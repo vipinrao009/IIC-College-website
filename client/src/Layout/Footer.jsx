@@ -35,10 +35,10 @@ const Footer = () => {
       {/* Divider Line */}
       <div className="border-t border-gray-700 mt-6"></div>
 
-      {/* Footer Note */}
-      <div className="text-center mt-4 text-sm">
-        Thank you for visiting me !!
-      </div>
+  
+      <div className="container mt-4 mx-auto text-center">
+          <p>© 2024 CSE Department | All Rights Reserved</p>
+        </div>
     </footer>
   );
 };
