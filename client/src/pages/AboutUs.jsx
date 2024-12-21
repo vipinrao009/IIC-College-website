@@ -62,16 +62,6 @@ const AboutUs = () => {
           </div>
         </section>
       </main>
-
-      {/* Footer */}
-      <footer className="w-full bg-gray-800 text-gray-400 py-6">
-        <div className="container mx-auto text-center text-sm">
-          <p>&copy; {new Date().getFullYear()} Coding Club. All rights reserved.</p>
-          <p className="mt-2">
-            Designed with ❤️ by the Coding Club Team.
-          </p>
-        </div>
-      </footer>
     </div>
     </Layout>
   )
