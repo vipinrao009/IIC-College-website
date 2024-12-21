@@ -12,7 +12,7 @@ import e10 from "./Gallery/Event (10).jpg";
 
 const ImageGallery = () => {
  
-  const images = [e1, e2, e3, e4, e5, e6, e7, e8, e9, e10];
+  const images = [e1, e2, e3, e4, e5, e6, e7, e8];
 
   // State for the selected image index
   const [selectedIndex, setSelectedIndex] = useState(null);
