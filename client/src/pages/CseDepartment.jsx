@@ -14,7 +14,7 @@ const CSEDepartment = () => {
           image: "path/to/er-subodh-sharma.jpg"
         },
         { 
-          name: "Er. Prashant Maharaj", 
+          name: "Er. Prashant Maharishi", 
           position: "Assistant Professor", 
           image: "path/to/er-prashant-maharaj.jpg"
         },
@@ -29,12 +29,12 @@ const CSEDepartment = () => {
           image: "path/to/er-aditi-ak-gupta.jpg"
         },
         { 
-          name: "Er. Pragya Kato", 
+          name: "Dr. Pragya Kabra ", 
           position: "Assistant Professor", 
           image: "path/to/er-pragya-kato.jpg"
         },
         { 
-          name: "Er. Shikhi Agarwal", 
+          name: "Er. Shikhi Agrawal", 
           position: "Assistant Professor", 
           image: "path/to/er-shikhi-agarwal.jpg"
         },

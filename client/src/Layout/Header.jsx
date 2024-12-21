@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [dropdownTimeout, setDropdownTimeout] = useState(null);
+
+  const handleMouseEnter = () => {
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout); // Prevent dropdown from hiding too quickly
+    }
+    setIsDropdownOpen(true); // Show dropdown immediately
+  };
+
+  const handleMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setIsDropdownOpen(false); // Add delay before hiding dropdown
+    }, 300); // Delay in milliseconds
+    setDropdownTimeout(timeout);
+  };
+
   return (
-    <div className="bg-purple-700 text-white font-sans">
+    
+    <div className="bg-purple-700 justify-around text-white font-sans">
       {/* Top Navbar */}
       {/* <div className="container mx-auto flex justify-between items-center py-2 px-4">
         <div className="flex space-x-4">
@@ -43,17 +61,46 @@ const Navbar = () => {
       </div>
 
       {/* Navigation Links */}
-      <div className="bg-blue-500">
-        <div className="container mx-auto flex justify-center py-2 px-4">
-          <div className="flex space-x-6 text-white">
-            <Link to={'/'} className="hover:text-gray-200">HOME</Link>
-            <Link to={'/club'} className="hover:text-gray-200">CLUB</Link>
-            <Link to={'/cse-department'} className="hover:text-gray-200">CSE DEPARTMENTS</Link>
-            <Link to={'/about'} className="hover:text-gray-200">About Us</Link>
-            <Link to={'/contact'} className="hover:text-gray-200">Contact Us</Link>
+      <div className="container mx-auto flex justify-center py-2 px-4">
+        <div className="flex space-x-6 text-white">
+          <Link to={'/'} className="hover:text-gray-200">HOME</Link>
+          {/* Dropdown for CLUB */}
+          <div
+            className="relative"
+            onMouseEnter={() => handleMouseEnter()}
+            onMouseLeave={() => handleMouseLeave()}
+          >
+            <div className="hover:text-gray-200 cursor-pointer">CLUB</div>
+            {isDropdownOpen && (
+              <div className="absolute top-full -left-5 mt-2 bg-white text-blue-500 shadow-md  rounded-t-none rounded-md z-10">
+                <Link
+                  to={'/club/coding'}
+                  className="block px-4 py-2 border hover:bg-blue-500 hover:text-white"
+                >
+                  Coding Club
+                </Link>
+                <Link
+                  to={'/club/robotic'}
+                  className="block px-4 py-2 hover:bg-blue-500 hover:text-white"
+                >
+                  Robotic Club
+                </Link>
+              </div>
+            )}
           </div>
+          <Link to={'/cse-department'} className="hover:text-gray-200">
+            CSE DEPARTMENTS
+          </Link>
+          <Link to={'/about'} className="hover:text-gray-200">About Us</Link>
+          <Link to={'/contact'} className="hover:text-gray-200">Contact Us</Link>
         </div>
+
+        <Link to={'/login'} className="ml-3 hover:text-gray-200">
+            Login/Register
+        </Link>
       </div>
+
+
     </div>
   );
 };
