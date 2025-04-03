@@ -1,7 +1,8 @@
 import express from "express"
-import {hello} from "../controllers/userController.js"
+import {register} from "../controllers/userController.js"
+import upload from "../utils/multer.js"
 const router = express.Router()
 
-router.get("/",hello)
+router.post("/register",upload.single("profileImage"),register)
 
 export default router

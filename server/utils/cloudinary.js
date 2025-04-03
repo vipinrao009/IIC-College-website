@@ -1,3 +1,5 @@
+import { config } from "dotenv"
+config()
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
 
@@ -12,7 +14,7 @@ const uploadOnCloudinary = async (localFilePath) => {
     if (!localFilePath) return null;
     //upload the file on cloudinary
     const response = await cloudinary.uploader.upload(localFilePath, {
-      folder: "Auction plateform",
+      folder: "IIC college website",
       resource_type: "auto",
     });
 
