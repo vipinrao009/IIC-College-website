@@ -4,6 +4,7 @@ import express from "express"
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import userRouter from "./routes/userRouter.js"
+import noticeRouter from "./routes/noticeRouter.js"
 import { ErrorMiddleware } from "./middleware/Error.js";
 const app = express()
 
@@ -18,6 +19,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}));
 
 app.use("/api/v1/user",userRouter)
+app.use("/api/v1/notice",noticeRouter)
 
 app.use(ErrorMiddleware)
 
