@@ -2,6 +2,7 @@ import AsyncHandler from "../middleware/AsyncHandler.js"
 import ErrorHandler from "../middleware/Error.js"
 import { User } from "../model/userSchema.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
+import { generateToken } from "../utils/jwtToken.js"
 
 
 export const register = AsyncHandler(async(req,res,next)=>{
@@ -23,7 +24,7 @@ export const register = AsyncHandler(async(req,res,next)=>{
     }
 
     const avatar = await uploadOnCloudinary(req.file.path);
-    console.log("pppppppppppppppp",avatar)
+    
     if(!avatar){
         return next(new ErrorHandler("Upload failed on cloudinary !!!",400))
     }
@@ -43,8 +44,55 @@ export const register = AsyncHandler(async(req,res,next)=>{
     user.password = undefined
     res.status(200).json({
         message:"User registered successfully",
-        success:true
+        success:true,
+        user
     })
 })
 
+export const login = AsyncHandler(async(req,res,next)=>{
+    const {email,password} = req.body;
 
+    if(!email ||!password){
+        return next(new ErrorHandler("Email & password are required"))
+    }
+
+    const user = await User.findOne({ email }).select("+password")
+    if(!user){
+        return next(new ErrorHandler("User does not exist"))
+    }
+
+    const validPassword = await user.comparePassword(password)
+    if(!validPassword){
+        return next(new ErrorHandler("Please enter correct password"))
+    }
+
+    user.password = undefined
+    generateToken(user,"User login succesfully",200,res)
+})
+
+export const logout = AsyncHandler(async(req,res,next)=>{
+    res
+       .status(200)
+       .cookie("token"," ",{
+        expire: new Date(Date.now),
+        httpOnly:true
+       })
+       .json({
+        success:true,
+        message:"User logout successfully"
+       })
+})
+
+export const getProfile = AsyncHandler(async(req,res,next)=>{
+    const user = req.user
+    
+    if(!user){
+        return next(new ErrorHandler("Failed to get the profile",400))
+    }
+
+    res.status(200).json({
+        success:true,
+        message:"Profile fetched successfully!!",
+        user
+    })
+})
