@@ -1,4 +1,5 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import axios from "axios";
 
 // Initial state
 const initialState = {
@@ -38,6 +39,16 @@ const GlobalContext = createContext();
 // Context provider
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // 🔥 Restore from localStorage after refresh
+  useEffect(() => {
+    const data = localStorage.getItem("auth");
+    if (data) {
+      const parsed = JSON.parse(data);
+      dispatch({ type: "SET_USER", payload: parsed.user });
+      axios.defaults.headers.common["Authorization"] = parsed.token;
+    }
+  }, []);
 
   return (
     <GlobalContext.Provider value={{ state, dispatch }}>

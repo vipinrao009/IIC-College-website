@@ -5,7 +5,7 @@ import { isAuthenticated } from "../middleware/authMiddleware.js"
 const router = express.Router()
 
 router.post("/register",upload.single("profileImage"),register)
-router.get("/login",login)
+router.post("/login",login)
 router.get("/logout",logout)
 router.get("/me",isAuthenticated,getProfile)
 

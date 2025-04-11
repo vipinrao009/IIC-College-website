@@ -1,10 +1,48 @@
 import React, { useState } from "react";
 import Layout from "../Layout/Layout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../Assets/Logo.png";
+import { useGlobalContext } from "../Context/GlobalContext";
+import axios from "axios"
+import baseUrl from "../Context/baseUrl.js"
 
 const Login = () => {
+  const {dispatch,state} = useGlobalContext()
+  const navigate = useNavigate()
   const [modalOpen, setModalOpen] = useState(false);
+
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: ""
+  });
+  
+  function handleInput (e){
+    const {name, value} = e.target
+    setLoginData({
+      ...loginData,
+      [name]: value
+    })
+  }
+
+  const handleLogin = async(e)=>{
+    e.preventDefault();
+   
+    try {
+      dispatch({ type: "SET_LOADING", payload: true });
+
+      const { data } = await axios.post(`${baseUrl}/api/v1/user/login`,{...loginData})
+
+      dispatch({ type: "SET_USER", payload: data.user})
+
+      localStorage.setItem("auth", JSON.stringify({ user: data.user, token: data.token}))
+
+      navigate("/");
+
+    } catch (error) {
+      alert("Login failed. Check your credentials.");
+    }
+
+  }
 
   const openModal = () => {
     setModalOpen(true);
@@ -26,12 +64,15 @@ const Login = () => {
         {/* Login Form */}
         <div className="bg-white p-10 rounded shadow-md w-full max-w-md">
           <h1 className="text-center pb-6 text-2xl font-bold">Login</h1>
-          <form>
+          <form onSubmit={handleLogin}>
             {/* Email Input */}
             <input
               type="email"
               placeholder="Email"
               className="w-full p-2 border border-gray-300 rounded mb-4 focus:ring focus:ring-blue-300"
+              name="email"
+              value={loginData.email}
+              onChange={handleInput}
             />
 
             {/* Password Input */}
@@ -40,6 +81,9 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 className="w-full p-2 border border-gray-300 rounded focus:ring focus:ring-blue-300"
+                name="password"
+                value={loginData.password}
+                onChange={handleInput}
               />
               <button
                 type="button"
