@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import { Tabs } from 'antd';
 import Layout from '../../Layout/Layout';
 import AddNotice from './AddNotice';
+import GetNotices from './GetNotices';
 
-// Dummy Components (Replace with actual components)
-
-const UpdateNotice = () => <div>Update Notice Component</div>;
-const DeleteNotice = () => <div>Delete Notice Component</div>;
 
 const App = () => {
   const [tabPosition] = useState('left');
@@ -20,13 +17,8 @@ const App = () => {
     },
     {
       key: "2",
-      label: "Update Notice",
-      children: <UpdateNotice />
-    },
-    {
-      key: "3",
-      label: "Delete Notice",
-      children: <DeleteNotice />
+      label: "All Notices",
+      children: <GetNotices />
     }
   ];
 

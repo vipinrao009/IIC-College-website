@@ -22,7 +22,7 @@ const AddNotice = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axiosInstance.post("/notice/add", formData);
+      await axiosInstance.post("/notice/add", formData);
       toast.success("Notice added successfully!");
       setFormData({ title: "", link: "", visible: true });
       navigate("/")

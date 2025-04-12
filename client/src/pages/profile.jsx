@@ -15,7 +15,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       dispatch({ type: "SET_LOADING", payload: true });
-      const { data } = await axios.get(`${baseUrl}/api/v1/user/logout`)
+      await axios.get(`${baseUrl}/api/v1/user/logout`)
       dispatch({ type: "LOGOUT", payload: false});
       localStorage.removeItem("auth", JSON.stringify({ user: "", token: ""}))
       toast.success("User logout successfully...")
