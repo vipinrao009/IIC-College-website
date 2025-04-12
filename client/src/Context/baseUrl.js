@@ -1,7 +1,14 @@
-const environment = process.env.NODE_ENV;  // Get current environment ('development' or 'production')
+import axios from "axios";
 
- const baseUrl = environment === 'development'
-  ? "http://localhost:8080"  // Local development URL
-  : "";  // Production URL
+const environment = process.env.NODE_ENV;
 
-export default baseUrl
+const baseUrl = environment === "development"
+  ? "http://localhost:8080/api/v1"
+  : "https://your-production-url.com/api/v1";  // Apna production URL daal yahan
+
+const axiosInstance = axios.create({
+  baseURL: baseUrl,
+  withCredentials: true  // ✅ so har request me cookie jayegi
+});
+
+export default axiosInstance;

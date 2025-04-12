@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Layout from "../Layout/Layout";
 import { Link, useNavigate } from "react-router-dom";
+import Layout from "../Layout/Layout";
 import logo from "../Assets/Logo.png";
 import { useGlobalContext } from "../Context/GlobalContext";
-import axios from "axios"
-import baseUrl from "../Context/baseUrl.js"
 import { toast } from "react-toastify";
+import axiosInstance from "../Context/baseUrl.js";
 
 const Login = () => {
   const {dispatch} = useGlobalContext()
@@ -30,11 +29,8 @@ const Login = () => {
    
     try {
       dispatch({ type: "SET_LOADING", payload: true });
-
-      const { data } = await axios.post(`${baseUrl}/api/v1/user/login`,{...loginData})
-
+      const { data } = await axiosInstance.post("/user/login",loginData);
       dispatch({ type: "SET_USER", payload: data.user})
-
       localStorage.setItem("auth", JSON.stringify({ user: data.user, token: data.token}))
       toast.success("User Login successfully...")
 

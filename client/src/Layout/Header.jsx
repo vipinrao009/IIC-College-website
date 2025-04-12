@@ -5,8 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Button, Dropdown, Menu } from "antd";
 import { DownOutlined } from '@ant-design/icons';
 import { toast } from 'react-toastify';
-import baseUrl from '../Context/baseUrl';
-import axios from 'axios';
+import axiosInstance from '../Context/baseUrl';
 
 
 const Navbar = () => {
@@ -35,7 +34,7 @@ const Navbar = () => {
     e.preventDefault();
     try {
       dispatch({ type: "SET_LOADING", payload: true });
-      const { data } = await axios.get(`${baseUrl}/api/v1/user/logout`)
+      const { data } = await axiosInstance.get("/user/logout")
       dispatch({ type: "LOGOUT", payload: false});
       localStorage.removeItem("auth", JSON.stringify({ user: "", token: ""}))
       toast.success("User logout successfully...")
@@ -136,7 +135,7 @@ const Navbar = () => {
                   <Menu.Item key="1">
                     <Link 
                       className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
-                      to="/profile"
+                      to="/notice"
                     >
                       Notices
                     </Link>

@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import YearWiseEvents from './pages/Events';
 import Register from './pages/Register';
 import Profile from './pages/profile';
+import AdminMenu from './pages/Notices/AdminMenu';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/events" element={<YearWiseEvents />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/notice" element={<AdminMenu />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

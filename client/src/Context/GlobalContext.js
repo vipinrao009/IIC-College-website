@@ -40,13 +40,11 @@ const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // 🔥 Restore from localStorage after refresh
   useEffect(() => {
     const data = localStorage.getItem("auth");
     if (data) {
       const parsed = JSON.parse(data);
       dispatch({ type: "SET_USER", payload: parsed.user });
-      axios.defaults.headers.common["Authorization"] = parsed.token;
     }
   }, []);
 
