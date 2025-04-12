@@ -7,7 +7,7 @@ import axios from "axios"
 import baseUrl from "../Context/baseUrl.js"
 
 const Login = () => {
-  const {dispatch,state} = useGlobalContext()
+  const {dispatch} = useGlobalContext()
   const navigate = useNavigate()
   const [modalOpen, setModalOpen] = useState(false);
 

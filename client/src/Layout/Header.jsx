@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useGlobalContext } from '../Context/GlobalContext';
+import { GiHamburgerMenu } from "react-icons/gi";
+import { Button, Dropdown, Menu } from "antd";
+import { DownOutlined } from '@ant-design/icons';
+
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [dropdownTimeout, setDropdownTimeout] = useState(null);
+  const {state} = useGlobalContext();
 
   const handleMouseEnter = () => {
     if (dropdownTimeout) {
@@ -20,89 +26,144 @@ const Navbar = () => {
   };
 
   return (
-    
     <div className="bg-purple-700 justify-around text-white font-sans">
-      {/* Top Navbar */}
-      {/* <div className="container mx-auto flex justify-between items-center py-2 px-4">
-        <div className="flex space-x-4">
-          <a href="#" className="hover:text-gray-300">Home</a>
-          <a href="#" className="hover:text-gray-300">Alumni</a>
-          <a href="#" className="hover:text-gray-300">GPS Photos</a>
-          <a href="#" className="hover:text-gray-300">University Publications</a>
-          <a href="#" className="hover:text-gray-300">Kulgeet</a>
-          <a href="#" className="hover:text-gray-300">Anti-Ragging</a>
-          <a href="#" className="hover:text-gray-300">Geotag</a>
-          <a href="#" className="hover:text-gray-300">2024 Holidays List</a>
-          <a href="#" className="hover:text-gray-300">Tenders</a>
-          <a href="#" className="hover:text-gray-300">Contact Us</a>
-          <a href="#" className="hover:text-gray-300">Email</a>
-        </div>
-      </div> */}
-
       {/* Bottom Section with Logo and Title */}
-      <div className=" bg-blue-300 text-black">
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between py-6 px-4">
-          {/* Logo */}
-          <div className="flex items-center space-x-12">
+      <div className="bg-indigo-300 shadow-sm ">
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-start md:justify-between px-4 py-6 space-y-4 md:space-y-0">
+          <div className="flex items-center gap-1">
+            {/* Logo */}
             <img
-              src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_2048/https://dbrau.ac.in/wp-content/uploads/2022/02/Final-Logo-2048x2048.webp" // Replace with actual logo URL
+              src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_2048/https://dbrau.ac.in/wp-content/uploads/2022/02/Final-Logo-2048x2048.webp"
               alt="University Logo"
-              className="w-20 h-20"
+              className="w-24 h-24 object-cover rounded-full border-2 border-blue-500 shadow-sm"
             />
-            <div>
-              <h1 className="text-3xl font-bold text-purple-800">Institute Of Engineering & Technology Khandari, Agra</h1>
-              <p className="text-gray-600 text-sm mt-1">
-                An Institution Of 90 Years of Glorious History & Contributions In Teaching And Research
+
+            {/* Text Info */}
+            <div className='ml-2'>
+              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-900 leading-tight">
+                Institute of Engineering & Technology, Khandari, Agra
+              </h1>
+              <p className="text-gray-600 text-sm mt-1 max-w-3xl">
+                An Institution with 90+ Years of Glorious History & Contributions in Teaching and Research
               </p>
-              <p className="text-red-500 text-sm font-semibold">(Accredited Grade A+ by NAAC)</p>
+              <p className="text-red-600 text-xs font-semibold mt-1 tracking-wide">
+                (Accredited Grade A+ by NAAC)
+              </p>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Navigation Links */}
-      <div className="container mx-auto flex justify-center py-2 px-4">
-        <div className="flex space-x-6 text-white">
-          <Link to={'/'} className="hover:text-gray-200">HOME</Link>
-          {/* Dropdown for CLUB */}
-          <div
-            className="relative"
-            onMouseEnter={() => handleMouseEnter()}
-            onMouseLeave={() => handleMouseLeave()}
-          >
-            <div className="hover:text-gray-200 cursor-pointer">CLUB</div>
-            {isDropdownOpen && (
-              <div className="absolute top-full -left-5 mt-2 bg-white text-blue-500 shadow-md  rounded-t-none rounded-md z-10">
-                <Link
-                  to={'/club/coding'}
-                  className="block px-4 py-2 border hover:bg-blue-500 hover:text-white"
-                >
-                  Coding Club
-                </Link>
-                <Link
-                  to={'/club/robotic'}
-                  className="block px-4 py-2 hover:bg-blue-500 hover:text-white"
-                >
-                  Robotic Club
-                </Link>
-              </div>
-            )}
+          {/* Optional Right Side Buttons or Info */}
+          <div className="hidden md:flex flex-col items-end text-right">
+            <span className="text-sm font-medium text-gray-600">Affiliated to Dr. B. R. Ambedkar University</span>
+            <span className="text-sm font-medium text-blue-800">Est. 1927</span>
           </div>
-          <Link to={'/cse-department'} className="hover:text-gray-200">
-            CSE DEPARTMENTS
-          </Link>
-          <Link to={'/about'} className="hover:text-gray-200">About Us</Link>
-          <Link to={'/contact'} className="hover:text-gray-200">Contact Us</Link>
         </div>
-
-        <Link to={'/login'} className="ml-3 hover:text-gray-200">
-            Login/Register
-        </Link>
       </div>
+      {/* Navigation Links */}
+      <div className="w-full bg-blue-900 shadow-md">
+        <div className="container mx-auto flex items-center justify-between px-6 py-3">
 
+          {/* CENTER NAV LINKS */}
+          <div className="flex space-x-8 text-white font-medium items-center mx-auto">
+            <Link to="/" className="hover:text-yellow-300 transition">HOME</Link>
 
+            {/* Dropdown CLUB */}
+            <div
+              className="relative"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className="hover:text-yellow-300 cursor-pointer transition">
+                CLUB
+              </div>
+              {isDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md w-44 text-sm z-20">
+                  <Link
+                    to="/club/coding"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition"
+                  >
+                    Coding Club
+                  </Link>
+                  <Link
+                    to="/club/robotic"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition"
+                  >
+                    Robotic Club
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <Link to="/cse-department" className="hover:text-yellow-300 transition">
+              CSE DEPARTMENT
+            </Link>
+            <Link to="/about" className="hover:text-yellow-300 transition">ABOUT US</Link>
+            <Link to="/contact" className="hover:text-yellow-300 transition">CONTACT</Link>
+          </div>
+            
+          {state.user ? (
+            <Dropdown
+              overlay={
+                <Menu>
+                  <Menu.Item key="1">
+                    <Link 
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
+                      to="/profile"
+                    > Profile
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="1">
+                    <Link 
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
+                      to="/profile"
+                    >
+                      Notices
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="1">
+                    <Link 
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
+                      to="/profile"
+                    > Upcomig Event
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="1">
+                    <Link 
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
+                      to="/profile"
+                    > Event Data
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="2">
+                    <Link 
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
+                      to="/logout"
+                    >Logout
+                    </Link>
+                  </Menu.Item>
+                </Menu>
+              }
+              placement="bottomRight"
+              arrow
+            >
+              <Button className=" text-blue-900 ">
+                {"Managenment"} <DownOutlined />
+              </Button>
+            </Dropdown>
+          ) : (
+            <Link
+              to="/login"
+              className="bg-yellow-400 cursor-pointer text-blue-900 px-4 py-2 rounded-md hover:bg-yellow-300 font-semibold transition"
+            >
+              Login
+            </Link>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Navbar;
+
+<GiHamburgerMenu className='text-2xl hover:text-yellow-300 cursor-pointer'/>
