@@ -7,7 +7,7 @@ import { FaSpinner } from 'react-icons/fa';
 const GetNotices = () => {
   const [allNotice, setAllNotice] = useState([])
   const { dispatch } = useGlobalContext();
-  
+  const [deletingId, setDeletingId] = useState(null);
 
   const fetchNotices = async () => {
     try {
@@ -25,9 +25,7 @@ const GetNotices = () => {
 
   const handleDelete = async(id)=>{
     try {
-        const confirm = window.confirm("Are you sure want to delete this notice")
-        if(!confirm) return;
-       
+        setDeletingId(id)       
         const { data } = await axiosInstance.delete(`/notice/delete/${id}`)
         toast.success(data.message || "Notice deleted successfully");
         fetchNotices()
@@ -68,7 +66,13 @@ const GetNotices = () => {
                       Edit
                     </button>
                     <button onClick={() => handleDelete(notice._id)} className="bg-red-500 px-4 hover:bg-red-600 transition-all duration-100 ease-in-out py-1 rounded-sm text-white">
-                      Delete
+                      {
+                        deletingId === notice._id ? (
+                            <FaSpinner className="animate-spin" />
+                        ):(
+                            'Delete'
+                        )
+                      }
                     </button>
                 </div>
                </td>
