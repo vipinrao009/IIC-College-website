@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../Context/GlobalContext';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Button, Dropdown, Menu } from "antd";
 import { DownOutlined } from '@ant-design/icons';
+import { toast } from 'react-toastify';
+import baseUrl from '../Context/baseUrl';
+import axios from 'axios';
 
 
 const Navbar = () => {
+  const {dispatch} = useGlobalContext()
+  const navigate = useNavigate()
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [dropdownTimeout, setDropdownTimeout] = useState(null);
   const {state} = useGlobalContext();
@@ -24,6 +30,21 @@ const Navbar = () => {
     }, 300); // Delay in milliseconds
     setDropdownTimeout(timeout);
   };
+
+  const handleLogOut = async(e)=>{
+    e.preventDefault();
+    try {
+      dispatch({ type: "SET_LOADING", payload: true });
+      const { data } = await axios.get(`${baseUrl}/api/v1/user/logout`)
+      dispatch({ type: "LOGOUT", payload: false});
+      localStorage.removeItem("auth", JSON.stringify({ user: "", token: ""}))
+      toast.success("User logout successfully...")
+      navigate("/")
+    } catch (error) {
+      toast.error("Failed to logout..");
+    }
+  }
+
 
   return (
     <div className="bg-purple-700 justify-around text-white font-sans">
@@ -135,9 +156,9 @@ const Navbar = () => {
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="2">
-                    <Link 
+                    <Link  onClick={handleLogOut}
                       className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
-                      to="/logout"
+                      
                     >Logout
                     </Link>
                   </Menu.Item>

@@ -5,6 +5,7 @@ import logo from "../Assets/Logo.png";
 import { useGlobalContext } from "../Context/GlobalContext";
 import axios from "axios"
 import baseUrl from "../Context/baseUrl.js"
+import { toast } from "react-toastify";
 
 const Login = () => {
   const {dispatch} = useGlobalContext()
@@ -35,13 +36,13 @@ const Login = () => {
       dispatch({ type: "SET_USER", payload: data.user})
 
       localStorage.setItem("auth", JSON.stringify({ user: data.user, token: data.token}))
+      toast.success("User Login successfully...")
 
       navigate("/");
 
     } catch (error) {
-      alert("Login failed. Check your credentials.");
+      toast.error("Login failed. Check your credentials.");
     }
-
   }
 
   const openModal = () => {

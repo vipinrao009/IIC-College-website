@@ -1,10 +1,29 @@
 import React from "react";
 import { useGlobalContext } from "../Context/GlobalContext";
 import Layout from "../Layout/Layout";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import baseUrl from "../Context/baseUrl";
 
 const Profile = () => {
-  const { state } = useGlobalContext();
+  const {state,dispatch} = useGlobalContext()
+  const navigate = useNavigate()
   const user = state.user;
+
+  const handleLogOut = async(e)=>{
+    e.preventDefault();
+    try {
+      dispatch({ type: "SET_LOADING", payload: true });
+      const { data } = await axios.get(`${baseUrl}/api/v1/user/logout`)
+      dispatch({ type: "LOGOUT", payload: false});
+      localStorage.removeItem("auth", JSON.stringify({ user: "", token: ""}))
+      toast.success("User logout successfully...")
+      navigate("/")
+    } catch (error) {
+      toast.error("Failed to logout..");
+    }
+  }
 
   return (
    <Layout>
@@ -45,7 +64,7 @@ const Profile = () => {
           <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
             Edit Profile
           </button>
-          <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">
+          <button onClick={handleLogOut} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">
             Logout
           </button>
         </div>
