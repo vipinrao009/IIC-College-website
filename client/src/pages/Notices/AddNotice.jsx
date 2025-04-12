@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import axiosInstance from "../../Context/baseUrl";
 import { useNavigate } from "react-router-dom";
+import { FaSpinner } from 'react-icons/fa';
 
 const AddNotice = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     link: "",
     visible: true,
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -21,17 +23,18 @@ const AddNotice = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      await axiosInstance.post("/notice/add", formData);
+      const response = await axiosInstance.post("/notice/add", formData);
       toast.success("Notice added successfully!");
       setFormData({ title: "", link: "", visible: true });
-      navigate("/")
-      
+      navigate("/");
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong!");
+    } finally {
+      setLoading(false); // Stop loading (hide spinner)
     }
   };
-  
 
   return (
     <div className="bg-white p-6 shadow rounded max-w-xl mx-auto mt-6">
@@ -77,7 +80,13 @@ const AddNotice = () => {
           type="submit"
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
         >
-          Add Notice
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <FaSpinner/>
+            </div>
+          ) : (
+            "Add Notice"
+          )}
         </button>
       </form>
     </div>
