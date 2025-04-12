@@ -14,6 +14,7 @@ import YearWiseEvents from './pages/Events';
 import Register from './pages/Register';
 import Profile from './pages/profile';
 import AdminMenu from './pages/Notices/AdminMenu';
+import Event from "./pages/Upcoming_event/Event"
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/notice" element={<AdminMenu />} />
+        <Route path="/upcoming-event" element={<Event />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

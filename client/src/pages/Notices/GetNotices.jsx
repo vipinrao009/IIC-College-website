@@ -50,7 +50,7 @@ const GetNotices = () => {
             <th className="border px-4 py-2">#</th>
             <th className="border px-4 py-2">Title</th>
             <th className="border px-4 py-2">Date</th>
-            <th className="border px-4 py-2">Edit</th>
+            <th className="border py-2">Action</th>
             
           </tr>
         </thead>

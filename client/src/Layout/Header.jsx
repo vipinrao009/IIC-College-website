@@ -143,14 +143,14 @@ const Navbar = () => {
                   <Menu.Item key="1">
                     <Link 
                       className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
-                      to="/profile"
+                      to="/upcoming-event"
                     > Upcomig Event
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="1">
                     <Link 
                       className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
-                      to="/profile"
+                      to="/gallery"
                     > Event Data
                     </Link>
                   </Menu.Item>
