@@ -10,6 +10,7 @@ import CodingClub from './pages/Coding_club/CodingClub';
 import Login from './pages/Login';
 import YearWiseEvents from './pages/Events';
 import Register from './pages/Register';
+import Profile from "./pages/profile"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/events" element={<YearWiseEvents/>} />
         <Route path="/register" element={<Register/>} />
+        <Route path="/profile" element={<Profile/>} />
 
 
         <Route path="*" element={<NotFound />} />  {/* Catch-all route for non-matching paths */}
