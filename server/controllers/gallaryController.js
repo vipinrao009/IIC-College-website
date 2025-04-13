@@ -41,4 +41,64 @@ export const uploadGallery = AsyncHandler(async (req, res, next) => {
         gallery
     });
 });
+
+
+export const fetchGallary = AsyncHandler(async(req,res,next)=>{
+    const gallery = await Gallery.find();
+    if(!gallery){
+        return next(new ErrorHandler("Not fount event data"))
+    }
+
+    res.status(200).json({
+        success:true,
+        message:"Event data fetched succesfully...",
+        gallery
+    })
+})
+
+export const deleteGallery = AsyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+  
+    if (!id) {
+      return next(new ErrorHandler("ID is required for deletion", 400));
+    }
+  
+    const deletedGallery = await Gallery.findByIdAndDelete(id);
+    if (!deletedGallery) {
+      return next(new ErrorHandler("Gallery item not found", 404));
+    }
+  
+    res.status(200).json({
+      success: true,
+      message: "Gallery item deleted successfully",
+    });
+  });
+
+  export const editGallery = AsyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const { title, year, type, description } = req.body;
+  
+    if (!id) {
+      return next(new ErrorHandler("ID is required for updation", 400));
+    }
+  
+    const gallery = await Gallery.findById(id);
+    if (!gallery) {
+      return next(new ErrorHandler("Gallery item not found", 404));
+    }
+  
+    // Update fields
+    gallery.title = title || gallery.title;
+    gallery.year = year || gallery.year;
+    gallery.type = type || gallery.type;
+    gallery.description = description || gallery.description;
+  
+    await gallery.save();
+  
+    res.status(200).json({
+      success: true,
+      message: "Gallery item updated successfully",
+      gallery,
+    });
+  });
   

@@ -150,7 +150,7 @@ const Navbar = () => {
                   <Menu.Item key="1">
                     <Link 
                       className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
-                      to="/gallery"
+                      to="/event"
                     > Event Data
                     </Link>
                   </Menu.Item>
