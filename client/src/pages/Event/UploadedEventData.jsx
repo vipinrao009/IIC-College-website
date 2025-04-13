@@ -97,14 +97,16 @@ const GetAllGallery = () => {
                         />
                         ))
                     ) : item.type === "photo" ? (
-                        item.files.map((file, i) => (
-                        <img
+                        <div className="flex overflow-x-auto space-x-2 max-w-[300px]">
+                        {item.files.map((file, i) => (
+                            <img
                             key={i}
                             src={file.url}
                             alt={`Image ${i}`}
-                            className="w-24 h-24 object-cover rounded"
-                        />
-                        ))
+                            className="w-24 h-24 object-cover rounded border"
+                            />
+                        ))}
+                        </div>
                     ) : item.type === "video" ? (
                         item.files.map((file, i) => (
                         <video key={i} controls width="250" className="rounded">
@@ -116,7 +118,6 @@ const GetAllGallery = () => {
                         <p>No file available</p>
                     )}
                     </td>
-
                   <td className="border px-2 py-1 space-x-2 text-center">
                     <button
                       onClick={() => openEditModal(item)}
