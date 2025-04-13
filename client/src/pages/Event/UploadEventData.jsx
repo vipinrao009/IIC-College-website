@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import axiosInstance from "../../Context/baseUrl";
 import { useNavigate } from "react-router-dom";
+import { FaSpinner } from 'react-icons/fa';
 
 const UploadEventData = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const UploadEventData = () => {
       toast.success("Gallery added successfully!");
       setFormData({ title: "", year: "", type: "photo", description: "" });
       setFiles([]);
-      navigate("/"); 
+      navigate("/event"); 
     } catch (err) {
       toast.error("Error adding gallery");
     } finally {
@@ -109,7 +110,7 @@ const UploadEventData = () => {
           className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
           disabled={loading}
         >
-          {loading ? "Uploading..." : "Add to Gallery"}
+         {loading ? <FaSpinner className="animate-spin mx-auto" /> : "Add to Gallery"}
         </button>
       </form>
     </div>

@@ -16,6 +16,8 @@ import Profile from './pages/profile';
 import AdminMenu from './pages/Notices/AdminMenu';
 import Event from "./pages/Upcoming_event/Event"
 import EventData from './pages/Event/EventData';
+import UploadEventData from './pages/Event/UploadEventData';
+import GetAllGallery from './pages/Event/UploadedEventData';
 
 function App() {
   return (

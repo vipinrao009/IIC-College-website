@@ -6,6 +6,7 @@ const GetAllGallery = () => {
   const [galleries, setGalleries] = useState([]);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [editData, setEditData] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
 
   const fetchGalleries = async () => {
     try {
@@ -103,7 +104,8 @@ const GetAllGallery = () => {
                             key={i}
                             src={file.url}
                             alt={`Image ${i}`}
-                            className="w-24 h-24 object-cover rounded border"
+                            onClick={() => setPreviewImage(file.url)}
+                            className="w-24 h-24 cursor-pointer object-cover rounded border"
                             />
                         ))}
                         </div>
@@ -140,6 +142,31 @@ const GetAllGallery = () => {
       ) : (
         <p>No gallery items found.</p>
       )}
+
+    {previewImage && (
+    <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 overflow-auto p-4">
+        <div className="relative bg-white rounded shadow-lg max-w-3xl w-full mx-auto">
+        {/* Close button */}
+        <button
+            onClick={() => setPreviewImage(null)}
+            className="absolute top-2 right-2 z-10 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+        >
+            Close
+        </button>
+
+        {/* Image Preview */}
+        <div className="max-h-[80vh] overflow-y-auto p-4">
+            <img
+            src={previewImage}
+            alt="Preview"
+            className="w-full h-auto rounded object-contain"
+            />
+        </div>
+        </div>
+    </div>
+    )}
+
+
 
       {/* Edit Modal */}
       {editModalOpen && (
