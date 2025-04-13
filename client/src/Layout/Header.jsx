@@ -84,7 +84,7 @@ const Navbar = () => {
         <div className="container mx-auto flex items-center justify-between px-6 py-3">
 
           {/* CENTER NAV LINKS */}
-          <div className="flex space-x-8 text-white font-medium items-center mx-auto">
+          <div className="flex space-x-8 text-white font-medium ">
             <Link to="/" className="hover:text-yellow-300 transition">HOME</Link>
 
             {/* Dropdown CLUB */}
@@ -166,8 +166,8 @@ const Navbar = () => {
               placement="bottomRight"
               arrow
             >
-              <Button className=" text-blue-900 ">
-                {"Managenment"} <DownOutlined />
+              <Button className=" font-semibold text-blue-900 ">
+                {"Dashboard"} <DownOutlined />
               </Button>
             </Dropdown>
           ) : (
