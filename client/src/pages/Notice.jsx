@@ -1,69 +1,71 @@
-import React from "react";
-import { FaBullhorn, FaCalendarAlt } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { FaBullhorn, FaCalendarAlt, FaMapMarkerAlt, FaLink } from "react-icons/fa";
+import axiosInstance from "../Context/baseUrl";
+import { toast } from "react-toastify";
 
 const NoticeBoard = () => {
-  // Static notice data
-  const notices = [
-    {
-      id: 1,
-      title: "Workshop on Web Development",
-      description:
-        "Join us for a hands-on workshop on full-stack web development covering React, Node.js, and MongoDB.",
-      date: "August 25, 2024",
-    },
-    {
-      id: 2,
-      title: "Holiday Announcement",
-      description:
-        "The institution will remain closed on 15th August in observance of Independence Day celebrations.",
-      date: "August 15, 2024",
-    },
-    {
-      id: 3,
-      title: "Coding Club Registration",
-      description:
-        "Registrations for the new Coding Club batch are now open. Last date to register: 30th August.",
-      date: "August 30, 2024",
-    },
-    {
-      id: 4,
-      title: "Seminar on Artificial Intelligence",
-      description:
-        "Attend our exclusive seminar on the future of AI in technology and education.",
-      date: "September 5, 2024",
-    },
-  ];
+  const [events, setEvents] = useState([]);
+
+  const fetchEvents = async () => {
+    try {
+      const { data } = await axiosInstance.get("/event/get-event");
+      setEvents(data.events);
+    } catch (error) {
+      toast.error("Failed to fetch events.");
+    }
+  };
+
+  const formatDate = (isoString) => {
+    const date = new Date(isoString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gradient-to-br from-blue-50 to-white py-10">
       <div className="max-w-6xl mx-auto px-4">
-        {/* Header */}
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-gray-800">📋 Upcoming Events</h1>
-          <p className="text-gray-600 font-semibold mt-2">
+          <p className="text-gray-600 font-medium mt-2">
             Stay updated with the latest announcements and events.
           </p>
         </div>
 
-        {/* Notices */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {notices.map((notice) => (
+          {events?.map((event) => (
             <div
-              key={notice.id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+              key={event._id}
+              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 min-h-[200px] flex flex-col justify-between"
             >
-              {/* Notice Header */}
-              <div className="bg-blue-600 text-white flex items-center p-4">
-                <FaBullhorn className="text-2xl mr-2" />
-                <h2 className="text-lg font-semibold">{notice.title}</h2>
+              {/* Header */}
+              <div className="bg-blue-600 text-white p-4 rounded-t-xl flex items-center">
+                <FaBullhorn className="text-xl mr-2" />
+                <h2 className="text-lg font-semibold">{event.title}</h2>
               </div>
 
-              {/* Notice Body */}
-              <div className="p-4">
-                <p className="text-gray-700 mb-4">{notice.description}</p>
-                <div className="flex items-center text-blue-600 font-medium">
-                  <FaCalendarAlt className="mr-2" />
-                  <span>{notice.date}</span>
+              {/* Body */}
+              <div className="p-4 bg-gradient-to-br from-blue-100 to-white py-2 flex flex-col flex-grow justify-between">
+                <p className="text-gray-700 mb-3">{event.description}</p>
+
+                <div className="text-sm flex justify-between space-y-2">
+                  <div className="flex items-center text-blue-600 font-medium">
+                    <FaCalendarAlt className="mr-2" />
+                    <span>{formatDate(event.date)}</span>
+                  </div>
+
+                  {event.location && (
+                    <div className="flex items-center text-gray-700">
+                      <FaMapMarkerAlt className="mr-2 text-red-500" />
+                      <span>{event.location}</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
