@@ -127,37 +127,36 @@ const Navbar = () => {
                 <Menu>
                   <Menu.Item key="1">
                     <Link 
-                      className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
+                      className="block px-4 py-2 font-semibold text-gray-700 hover:bg-blue-500 hover:text-white transition" 
                       to="/profile"
                     > Profile
                     </Link>
                   </Menu.Item>
-                  <Menu.Item key="1">
+                  <Menu.Item key="2">
                     <Link 
-                      className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
+                      className="block px-4 py-2 font-semibold text-gray-700 hover:bg-blue-500 hover:text-white transition" 
                       to="/notice"
                     >
                       Notices
                     </Link>
                   </Menu.Item>
-                  <Menu.Item key="1">
+                  <Menu.Item key="3">
                     <Link 
-                      className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
+                      className="block px-4 py-2 font-semibold text-gray-700 hover:bg-blue-500 hover:text-white transition" 
                       to="/upcoming-event"
                     > Upcomig Event
                     </Link>
                   </Menu.Item>
-                  <Menu.Item key="1">
+                  <Menu.Item key="4">
                     <Link 
-                      className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
+                      className="block px-4 py-2 font-semibold text-gray-700 hover:bg-blue-500 hover:text-white transition" 
                       to="/event"
                     > Event Data
                     </Link>
                   </Menu.Item>
-                  <Menu.Item key="2">
+                  <Menu.Item key="5">
                     <Link  onClick={handleLogOut}
-                      className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition" 
-                      
+                      className="block px-4 py-2 font-semibold text-gray-700 hover:bg-blue-500 hover:text-white transition" 
                     >Logout
                     </Link>
                   </Menu.Item>
