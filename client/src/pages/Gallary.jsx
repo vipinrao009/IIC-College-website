@@ -1,102 +1,96 @@
-import React, { useState } from "react";
-import e1 from "./Gallery/Event (1).jpg";
-import e2 from "./Gallery/Event (2).jpg";
-import e3 from "./Gallery/Event (3).jpg";
-import e4 from "./Gallery/Event (4).jpg";
-import e5 from "./Gallery/Event (5).jpg";
-import e6 from "./Gallery/Event (6).jpg";
-import e7 from "./Gallery/Event (7).jpg";
-import e8 from "./Gallery/Event (8).jpg";
-import e9 from "./Gallery/Event (9).jpg";
-import e10 from "./Gallery/Event (10).jpg";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import axiosInstance from "../Context/baseUrl";
 
 const ImageGallery = () => {
- 
-  const images = [e1, e2, e3, e4, e5, e6, e7, e8];
-
-  // State for the selected image index
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const [images, setImages] = useState([]);
 
-  // Open modal with selected index
-  const openModal = (index) => {
-    setSelectedIndex(index);
-  };
+  const openModal = (index) => setSelectedIndex(index);
+  const closeModal = () => setSelectedIndex(null);
 
-  // Close the modal
-  const closeModal = () => {
-    setSelectedIndex(null);
-  };
-
-  // Show next image
   const showNext = () => {
-    setSelectedIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setSelectedIndex((prev) => (prev + 1) % images.length);
   };
 
-  // Show previous image
   const showPrevious = () => {
-    setSelectedIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
-    );
+    setSelectedIndex((prev) => (prev - 1 + images.length) % images.length);
   };
+
+  const fetchGalleries = async () => {
+    try {
+      const { data } = await axiosInstance.get("/gallery/fetch", {
+        withCredentials: true,
+      });
+      setImages(data.gallery || []);
+    } catch (error) {
+      toast.error("Failed to load galleries");
+    }
+  };
+
+  useEffect(() => {
+    console.log(images)
+    fetchGalleries();
+  }, []);
 
   return (
     <div className="bg-gray-50 py-10">
-      {/* Gallery Header */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-gray-800">📸 Gallery</h1>
-        <p className="text-gray-600 mt-2">A glimpse of our recent events and celebrations</p>
+        <p className="text-gray-600 mt-2">
+          A glimpse of our recent events and celebrations
+        </p>
       </div>
 
-      {/* Image Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 max-w-7xl mx-auto">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer"
-            onClick={() => openModal(index)}
-          >
-            <img
-              src={image}
-              alt={`Event ${index + 1}`}
-              className="w-full h-56 object-cover transform hover:scale-110 transition-transform duration-300"
-            />
-          </div>
-        ))}
+        {images.map((item, index) =>
+          item.files.map((file, idx) => (
+            <div
+              key={`${index}-${idx}`}
+              className="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+              onClick={() => openModal(index)}
+            >
+              <img
+                src={file.url}
+                alt={`Event ${index + 1}`}
+                className="w-full h-56 object-cover transform hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          ))
+        )}
       </div>
 
-      {/* Full-Screen Modal */}
       {selectedIndex !== null && (
         <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
-          {/* Close Button */}
           <button
-            className="absolute top-4 right-4 text-white text-3xl bg-gray-800 rounded-full px-4 py-2 hover:bg-red-600"
+            className="absolute top-6 right-6 text-white text-3xl bg-red-600 hover:bg-red-700 rounded-full px-4 py-2"
             onClick={closeModal}
           >
             &times;
           </button>
 
-          {/* Navigation Buttons */}
           <button
-            className="absolute left-4 text-white text-4xl bg-gray-800 rounded-full p-4 hover:bg-blue-600"
+            className="absolute left-4 text-white text-4xl bg-gray-800 hover:bg-blue-600 rounded-full p-3"
             onClick={showPrevious}
           >
             &#8249;
           </button>
 
           <button
-            className="absolute right-4 text-white text-4xl bg-gray-800 rounded-full p-4 hover:bg-blue-600"
+            className="absolute right-4 text-white text-4xl bg-gray-800 hover:bg-blue-600 rounded-full p-3"
             onClick={showNext}
           >
             &#8250;
           </button>
 
-          {/* Selected Image */}
           <div className="relative max-w-4xl w-full mx-4">
-            <img
-              src={images[selectedIndex]}
-              alt={`Full-Screen Event ${selectedIndex + 1}`}
-              className="w-full h-auto rounded-lg shadow-lg transform transition-transform scale-100 duration-500"
-            />
+            {images[selectedIndex]?.files?.[0] && (
+              <img
+                src={images[selectedIndex].files[0].url}
+                alt={`Full-Screen Event ${selectedIndex + 1}`}
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
+            )}
           </div>
         </div>
       )}
