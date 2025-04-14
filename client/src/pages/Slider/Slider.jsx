@@ -14,7 +14,7 @@ const AutoImageSlider = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 700,
+    speed: 600,
     fade: true,
     slidesToShow: 1,
     slidesToScroll: 1,

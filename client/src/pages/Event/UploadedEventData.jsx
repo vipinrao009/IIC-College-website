@@ -62,7 +62,7 @@ const GetAllGallery = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold text-blue-600 mb-4">All Gallery Items</h2>
+      <h2 className="text-2xl font-bold text-blue-600 mb-4">All Events</h2>
       {galleries.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="w-full border-collapse border text-sm">
