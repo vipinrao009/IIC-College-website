@@ -35,12 +35,12 @@ const NoticeBoard = () => {
   ];
 
   return (
-    <div className="bg-gray-50 min-h-screen py-10">
+    <div className="bg-gray-50 min-h-screen">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold text-gray-800">📋 Upcoming Events</h1>
-          <p className="text-gray-600 mt-2">
+          <h1 className="text-3xl font-bold text-gray-800">📋 Upcoming Events</h1>
+          <p className="text-gray-600 font-semibold mt-2">
             Stay updated with the latest announcements and events.
           </p>
         </div>

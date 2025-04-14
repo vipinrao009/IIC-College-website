@@ -63,10 +63,10 @@ const Navbar = () => {
               <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-900 leading-tight">
                 Institute of Engineering & Technology, Khandari, Agra
               </h1>
-              <p className="text-gray-600 text-sm mt-1 max-w-3xl">
+              <p className="text-gray-600 font-semibold text-sm mt-1 max-w-3xl">
                 An Institution with 90+ Years of Glorious History & Contributions in Teaching and Research
               </p>
-              <p className="text-red-600 text-xs font-semibold mt-1 tracking-wide">
+              <p className="text-red-600 text-sm font-semibold mt-1 tracking-wide">
                 (Accredited Grade A+ by NAAC)
               </p>
             </div>
@@ -74,7 +74,7 @@ const Navbar = () => {
 
           {/* Optional Right Side Buttons or Info */}
           <div className="hidden md:flex flex-col items-end text-right">
-            <span className="text-sm font-medium text-gray-600">Affiliated to Dr. B. R. Ambedkar University</span>
+            <span className="text-sm font-medium  text-gray-600">Affiliated to Dr. B. R. Ambedkar University</span>
             <span className="text-sm font-medium text-blue-800">Est. 1927</span>
           </div>
         </div>
