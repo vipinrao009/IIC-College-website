@@ -44,7 +44,12 @@ export const uploadGallery = AsyncHandler(async (req, res, next) => {
 
 
 export const fetchGallary = AsyncHandler(async(req,res,next)=>{
-    const gallery = await Gallery.find().sort({ createdAt: -1 });
+    const { year } = req.query;
+    let query = {};
+    if (year) {
+      query.year = parseInt(year); // string se number
+    }
+    const gallery = await Gallery.find(query).sort({ createdAt: -1 });
     if(!gallery){
         return next(new ErrorHandler("Not fount event data"))
     }
