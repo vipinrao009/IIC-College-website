@@ -1,6 +1,5 @@
 import React from 'react'
 import Layout from '../../Layout/Layout'
-import logo from '../Slider/1.png'
 import { Link } from 'react-router-dom'
 
 const CodingClub = () => {
@@ -55,7 +54,7 @@ const CodingClub = () => {
       <section className="bg-blue-50 py-8 px-4">
         <div className="container mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-blue-500 mb-4">
-            Incharge of Club: Er. Prashant Maharishi
+            Incharge of Club: Er. Saurabh Garg
           </h2>
         </div>
       </section>

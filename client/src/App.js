@@ -16,6 +16,7 @@ import Profile from './pages/profile';
 import AdminMenu from './pages/Notices/AdminMenu';
 import Event from "./pages/Upcoming_event/Event"
 import EventData from './pages/Event/EventData';
+import YearWiseEvent from './pages/YearWiseEvent';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
         <Route path="/cse-department" element={<CseDepartment />} />
         <Route path="/club/coding" element={<CodingClub />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/events" element={<YearWiseEvents />} />
+        <Route path="/events" element={<YearWiseEvent />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/notice" element={<AdminMenu />} />
