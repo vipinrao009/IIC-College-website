@@ -11,6 +11,7 @@ const YearWiseEvent = () => {
   const [activeYear, setActiveYear] = useState('2024'); // default tab
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
+  const [previewImage, setPreviewImage] = useState(null);
 
   const fetchGalleriesByYear = async (year) => {
     setLoading(true);
@@ -85,6 +86,7 @@ const YearWiseEvent = () => {
                     <img
                     src={file.url}
                     alt={file.filename}
+                    onClick={()=>setPreviewImage(file.url)}
                     className="w-72 h-48 object-cover cursor-pointer"
                     />
                     <div className="p-2">
@@ -118,6 +120,29 @@ const YearWiseEvent = () => {
             Next
             </button>
         </div>
+        )}
+
+        {previewImage && (
+            <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 overflow-auto p-4">
+                <div className="relative bg-white rounded shadow-lg max-w-3xl w-full mx-auto">
+                {/* Close button */}
+                <button
+                    onClick={() => setPreviewImage(null)}
+                    className="absolute top-2 right-2 z-10 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                >
+                    Close
+                </button>
+
+                {/* Image Preview */}
+                <div className="max-h-[80vh] overflow-y-auto p-4">
+                    <img
+                    src={previewImage}
+                    alt="Preview"
+                    className="w-full h-auto rounded object-contain"
+                    />
+                </div>
+                </div>
+            </div>
         )}
 
       </div>
