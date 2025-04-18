@@ -7,7 +7,7 @@ const gallerySchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    required: [true, "Year is required"],
+    required: [true, "Date is required"],
   },
   location: {
     type: String,

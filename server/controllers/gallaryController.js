@@ -43,23 +43,31 @@ export const uploadGallery = AsyncHandler(async (req, res, next) => {
 });
 
 
-export const fetchGallary = AsyncHandler(async(req,res,next)=>{
-    const { year } = req.query;
-    let query = {};
-    if (year) {
-      query.year = parseInt(year); // string se number
-    }
-    const gallery = await Gallery.find(query).sort({ createdAt: -1 });
-    if(!gallery){
-        return next(new ErrorHandler("Not fount event data"))
-    }
+export const fetchGallary = AsyncHandler(async (req, res, next) => {
+  const { year } = req.query;
 
-    res.status(200).json({
-        success:true,
-        message:"Event data fetched succesfully...",
-        gallery
-    })
-})
+  let query = {};
+  if (year) {
+    const startOfYear = new Date(`${year}-01-01T00:00:00.000Z`);
+    const endOfYear = new Date(`${parseInt(year) + 1}-01-01T00:00:00.000Z`);
+    query.date = { $gte: startOfYear, $lt: endOfYear };
+  }
+
+  const gallery = await Gallery.find(query).sort({ createdAt: -1 });
+
+  if (!gallery || gallery.length === 0) {
+    return next(new ErrorHandler("No event data found", 404));
+  }
+
+  res.status(200).json({
+    success: true,
+    message: "Event data fetched successfully",
+    gallery,
+  });
+});
+
+
+
 
 export const deleteGallery = AsyncHandler(async (req, res, next) => {
     const { id } = req.params;
@@ -83,10 +91,14 @@ export const deleteGallery = AsyncHandler(async (req, res, next) => {
     const { id } = req.params;
     const { title, date, type, description } = req.body;
 
-    console.log(req.body)
+    console.log(date)
   
     if (!id) {
       return next(new ErrorHandler("ID is required for updation", 400));
+    }
+
+    if (!date) {
+      return next(new ErrorHandler("date is required for updation", 400));
     }
   
     const gallery = await Gallery.findById(id);
@@ -96,7 +108,7 @@ export const deleteGallery = AsyncHandler(async (req, res, next) => {
   
     // Update fields
     gallery.title = title || gallery.title;
-    gallery.date = date || gallery.date;
+    gallery.date = date || date;
     gallery.type = type || gallery.type;
     gallery.description = description || gallery.description;
   

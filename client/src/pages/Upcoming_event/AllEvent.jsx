@@ -85,7 +85,7 @@ const GetAllEvents = () => {
                 <th className="border px-4 py-2">#</th>
                 <th className="border px-4 py-2">Title</th>
                 <th className="border px-4 py-2">Date</th>
-                <th className="border px-4 py-2">Location</th>
+                <th className="border px-4 py-2">Venue</th>
                 <th className="border px-4 py-2">Link</th>
                 <th className="border px-4 py-2">Actions</th>
               </tr>

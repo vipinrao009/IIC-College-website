@@ -21,6 +21,7 @@ const YearWiseEvent = () => {
       });
       setGalleries(data.gallery || []);
     } catch (error) {
+      setGalleries([]);
       toast.error('Failed to load gallery');
     } finally {
       setLoading(false);

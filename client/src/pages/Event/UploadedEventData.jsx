@@ -71,7 +71,7 @@ const GetAllGallery = () => {
                 <th className="border px-4 py-2">#</th>
                 <th className="border px-4 py-2">Title</th>
                 <th className="border px-4 py-2">Date</th>
-                <th className="border px-4 py-2">Location</th>
+                <th className="border px-4 py-2">Venue</th>
                 <th className="border px-4 py-2">Type</th>
                 <th className="border px-4 py-2">Description</th>
                 <th className="border px-4 py-2">Files</th>
