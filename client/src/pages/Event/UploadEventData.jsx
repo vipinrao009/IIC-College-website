@@ -8,7 +8,8 @@ const UploadEventData = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
-    year: "",
+    date: "",
+    location: "",
     type: "photo",
     description: "",
   });
@@ -30,7 +31,8 @@ const UploadEventData = () => {
     try {
       const payload = new FormData();
       payload.append("title", formData.title);
-      payload.append("year", formData.year);
+      payload.append("date", formData.date);
+      payload.append("location", formData.location);
       payload.append("type", formData.type);
       payload.append("description", formData.description);
       for (let i = 0; i < files.length; i++) {
@@ -44,7 +46,7 @@ const UploadEventData = () => {
       });
 
       toast.success("Gallery added successfully!");
-      setFormData({ title: "", year: "", type: "photo", description: "" });
+      setFormData({ title: "", date: "", location: "", type: "photo", description: "" });
       setFiles([]);
       navigate("/event"); 
     } catch (err) {
@@ -68,13 +70,22 @@ const UploadEventData = () => {
           className="w-full p-2 border rounded"
         />
         <input
-          type="number"
-          name="year"
-          value={formData.year}
+          type="date"
+          name="date"
+          value={formData.date}
           onChange={handleChange}
-          placeholder="Year"
+          placeholder="Date"
           required
           className="w-full p-2 border rounded"
+        />
+
+        <input 
+           type="text"
+           name="location"
+           value={formData.location}
+           onChange={handleChange}
+           placeholder="location"
+           className="w-full p-2 border rounded"
         />
 
         <select

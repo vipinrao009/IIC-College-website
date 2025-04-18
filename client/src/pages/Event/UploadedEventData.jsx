@@ -61,7 +61,7 @@ const GetAllGallery = () => {
   }, []);
 
   return (
-    <div className="p-6">
+    <div className="p-6 overflow-x-auto">
       <h2 className="text-2xl font-bold text-blue-600 mb-4">All Events</h2>
       {galleries.length > 0 ? (
         <div className="overflow-x-auto">
@@ -70,7 +70,8 @@ const GetAllGallery = () => {
               <tr className="bg-blue-100">
                 <th className="border px-4 py-2">#</th>
                 <th className="border px-4 py-2">Title</th>
-                <th className="border px-4 py-2">Year</th>
+                <th className="border px-4 py-2">Date</th>
+                <th className="border px-4 py-2">Location</th>
                 <th className="border px-4 py-2">Type</th>
                 <th className="border px-4 py-2">Description</th>
                 <th className="border px-4 py-2">Files</th>
@@ -81,10 +82,13 @@ const GetAllGallery = () => {
               {galleries.map((item, index) => (
                 <tr key={item._id}>
                   <td className="border px-2 py-1 text-center">{index + 1}</td>
-                  <td className="border px-2 py-1">{item.title}</td>
-                  <td className="border px-2 py-1">{item.year}</td>
+                  <td className="border px-2 font-semibold py-1">{item.title}</td>
+                  <td className="border px-2 py-1">{new Date(item.date).toLocaleDateString()}</td>
+                  <td className="border px-2 py-1">{item.location}</td>
                   <td className="border px-2 py-1">{item.type}</td>
-                  <td className="border px-2 py-1">{item.description || "—"}</td>
+                  <td className="border px-2 py-1 max-w-[180px] text-ellipsis overflow-hidden whitespace-nowrap" title={item.description || "—"}>
+                    {item.description || "—"}
+                  </td>
                   <td className="border px-2 py-1 space-y-2">
                     {item.type === "pdf" ? (
                         item.files.map((file, i) => (
@@ -120,7 +124,7 @@ const GetAllGallery = () => {
                         <p>No file available</p>
                     )}
                     </td>
-                  <td className="border px-2 py-1 space-x-2 text-center">
+                  <td className="border px-2 py-1 w-40 space-x-2 text-center">
                     <button
                       onClick={() => openEditModal(item)}
                       className="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-500"
@@ -183,11 +187,11 @@ const GetAllGallery = () => {
                 className="w-full border p-2 rounded"
               />
               <input
-                type="number"
-                name="year"
-                value={editData.year}
+                type="date"
+                name="date"
+                value={editData.date}
                 onChange={handleEditChange}
-                placeholder="Year"
+                placeholder="Date"
                 className="w-full border p-2 rounded"
               />
               <select

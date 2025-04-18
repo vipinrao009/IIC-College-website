@@ -4,12 +4,11 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { Gallery } from "../model/gallerySchema.js";
 
 export const uploadGallery = AsyncHandler(async (req, res, next) => {
-    const { title, year, type, description } = req.body;
+    const { title, date, location, type, description } = req.body;
 
-    if (!title || !year || !type || !req.files || req.files.length === 0) {
-        return next(new ErrorHandler("All fields and at least one file are required", 400));
-    }
-
+    if (!title || !date || !location || !type || !req.files || req.files.length === 0) {
+      return next(new ErrorHandler("All fields and at least one file are required", 400));
+  }
     // Array to hold uploaded file details
     const uploadedFiles = [];
 
@@ -29,7 +28,8 @@ export const uploadGallery = AsyncHandler(async (req, res, next) => {
 
     const gallery = await Gallery.create({
         title,
-        year,
+        date,
+        location,
         type,
         files: uploadedFiles,
         description
@@ -81,7 +81,9 @@ export const deleteGallery = AsyncHandler(async (req, res, next) => {
 
   export const editGallery = AsyncHandler(async (req, res, next) => {
     const { id } = req.params;
-    const { title, year, type, description } = req.body;
+    const { title, date, type, description } = req.body;
+
+    console.log(req.body)
   
     if (!id) {
       return next(new ErrorHandler("ID is required for updation", 400));
@@ -94,7 +96,7 @@ export const deleteGallery = AsyncHandler(async (req, res, next) => {
   
     // Update fields
     gallery.title = title || gallery.title;
-    gallery.year = year || gallery.year;
+    gallery.date = date || gallery.date;
     gallery.type = type || gallery.type;
     gallery.description = description || gallery.description;
   

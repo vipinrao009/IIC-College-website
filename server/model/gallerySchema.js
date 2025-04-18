@@ -5,9 +5,13 @@ const gallerySchema = new mongoose.Schema({
     type: String,
     required: [true, "Title is required"],
   },
-  year: {
-    type: Number,
+  date: {
+    type: Date,
     required: [true, "Year is required"],
+  },
+  location: {
+    type: String,
+    required: [true, "Location is required"]
   },
   type: {
     type: String,
