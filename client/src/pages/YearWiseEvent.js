@@ -10,7 +10,7 @@ const YearWiseEvent = () => {
   const [loading, setLoading] = useState(false);
   const [activeYear, setActiveYear] = useState('2024'); // default tab
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 8;
   const [previewImage, setPreviewImage] = useState(null);
 
   const fetchGalleriesByYear = async (year) => {

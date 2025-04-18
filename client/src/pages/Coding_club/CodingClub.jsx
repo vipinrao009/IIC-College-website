@@ -9,8 +9,7 @@ const CodingClub = () => {
       {/* Header Section */}
       <header className="bg-gray-800 text-white py-6">
         <div className="container mx-auto flex justify-between items-center px-4">
-          {/* <div className="text-3xl font-bold">Coding Club</div> */}
-          <nav className="flex text-right space-x-6">
+          <nav className="flex text-right font-semibold space-x-6">
             <Link to={'/events'} className="hover:text-gray-300">Events</Link>
           </nav>
         </div>
