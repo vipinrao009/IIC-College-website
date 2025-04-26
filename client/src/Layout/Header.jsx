@@ -94,7 +94,7 @@ const Navbar = () => {
               onMouseLeave={handleMouseLeave}
             >
               <div className="hover:text-yellow-300 cursor-pointer transition">
-                CLUB
+                CLUBS
               </div>
               {isDropdownOpen && (
                 <div className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md w-44 text-sm z-20">
@@ -109,6 +109,54 @@ const Navbar = () => {
                     className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition"
                   >
                     Robotic Club
+                  </Link>
+                  <Link
+                    to="/club/gate"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition"
+                  >
+                    Gate Club
+                  </Link>
+                  <Link
+                    to="/club/gaming"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition"
+                  >
+                    E-Gaming Club
+                  </Link>
+                  <Link
+                    to="/club/autocad"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition"
+                  >
+                    AutoCAD Club
+                  </Link>
+                  <Link
+                    to="/club/hackthon"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition"
+                  >
+                    Hackthon Club
+                  </Link>
+                  <Link
+                    to="/club/automobile"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition"
+                  >
+                     Automobile Club
+                  </Link>
+                  <Link
+                    to="/club/maintenance"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition"
+                  >
+                     Maintenance Club
+                  </Link>
+                  <Link
+                    to="/club/sport"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition"
+                  >
+                    Sport Club
+                  </Link>
+                  <Link
+                    to="/club/placement"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white transition"
+                  >
+                    Training & Placement Club
                   </Link>
                 </div>
               )}

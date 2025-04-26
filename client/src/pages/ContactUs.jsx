@@ -54,19 +54,19 @@ const ContactUs = () => {
               <span className="text-blue-600 text-2xl mr-4">
                 📍
               </span>
-              <p className="text-gray-700">123 Business Street, City, Country</p>
+              <p className="text-gray-700">NH2, Khandari Crossing, Near, Khandari, Agra, Uttar Pradesh 282002</p>
             </div>
             <div className="flex items-center">
               <span className="text-blue-600 text-2xl mr-4">
                 📧
               </span>
-              <p className="text-gray-700">contact@example.com</p>
+              <p className="text-gray-700">directorietagra@gmail.com</p>
             </div>
             <div className="flex items-center">
               <span className="text-blue-600 text-2xl mr-4">
                 📞
               </span>
-              <p className="text-gray-700">+123-456-7890</p>
+              <p className="text-gray-700"> (+91) 0562-2522622</p>
             </div>
           </div>
 

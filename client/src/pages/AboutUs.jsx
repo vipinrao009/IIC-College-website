@@ -9,10 +9,10 @@ const AboutUs = () => {
       <header className="w-full bg-gradient-to-r from-blue-700 to-indigo-600 text-white py-10">
         <div className="container mx-auto px-6 lg:px-20">
           <h1 className="text-4xl lg:text-5xl font-extrabold text-center">
-            Welcome to the Coding Club
+            Welcome to the IET Club Nest
           </h1>
           <p className="mt-4 text-center text-lg lg:text-xl font-light">
-            Empowering developers to innovate, learn, and grow together.
+            Empowering Students to innovate, learn, and grow together.
           </p>
         </div>
       </header>
@@ -23,8 +23,9 @@ const AboutUs = () => {
         <section className="bg-white shadow-lg rounded-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-blue-700 mb-4">Who We Are</h2>
           <p className="text-gray-700 text-lg leading-relaxed">
-            The Coding Club is a vibrant community of tech enthusiasts, developers, and innovators dedicated to exploring the ever-evolving world of technology. 
-            Whether you're a seasoned professional or just starting, our club provides a platform for collaboration, learning, and real-world application.
+          We are a passionate community of innovators, learners, and creators united by a shared purpose — to grow, collaborate, and make a meaningful impact. Our club is more than just a group; it's a vibrant ecosystem where students from diverse backgrounds come together to exchange ideas, develop skills, and explore new possibilities.
+          Driven by curiosity and fueled by creativity, we organize workshops, competitions, interactive sessions, and real-world projects that empower our members to think beyond the classroom. Whether it's through coding, design, robotics, research, or leadership, we foster a culture of continuous learning and collective growth.
+          At our core, we believe in teamwork, talent, and transformation — shaping not just great professionals, but future leaders and changemakers.
           </p>
         </section>
 
