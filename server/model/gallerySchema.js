@@ -18,6 +18,30 @@ const gallerySchema = new mongoose.Schema({
     enum: ["photo", "video", "pdf"],
     required: [true, "Type is required"],
   },
+  club : {
+    type: String,
+    enum: ["coding", "robotic", "gaming", "hackthon", "gate", "automobile", "sport", "placement", "autocad", "maintenance", "iot", "cultural", "infra", "poster"],
+    required: [true, "club is required"]
+  },
+  theme: {
+    type: String,
+    required: [true, "Theme is required"]
+  },
+  no_student: {
+    type: String,
+  },
+  no_faculty: {
+    type: String
+  },
+  speaker: {
+    type: String
+  },
+  outcome: {
+    type: String
+  },
+  event_for: {
+    type: String
+  },
   files: [
     {
       url: String,       // Path to the uploaded file

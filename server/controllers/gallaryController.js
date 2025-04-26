@@ -4,9 +4,9 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { Gallery } from "../model/gallerySchema.js";
 
 export const uploadGallery = AsyncHandler(async (req, res, next) => {
-    const { title, date, location, type, description } = req.body;
-
-    if (!title || !date || !location || !type || !req.files || req.files.length === 0) {
+    const { title, date, location, type, description, club, theme, no_student, no_faculty, speaker, outcome, event_for } = req.body;
+    
+    if (!title || !date || !location || !type || !theme || !club || !req.files || req.files.length === 0) {
       return next(new ErrorHandler("All fields and at least one file are required", 400));
   }
     // Array to hold uploaded file details
@@ -32,7 +32,14 @@ export const uploadGallery = AsyncHandler(async (req, res, next) => {
         location,
         type,
         files: uploadedFiles,
-        description
+        description,
+        club,
+        theme, 
+        no_student, 
+        no_faculty, 
+        speaker, 
+        outcome, 
+        event_for
     });
 
     res.status(201).json({
