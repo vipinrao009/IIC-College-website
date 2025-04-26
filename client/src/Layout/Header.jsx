@@ -162,9 +162,9 @@ const Navbar = () => {
               )}
             </div>
 
-            <Link to="/cse-department" className="hover:text-yellow-300 transition">
+            {/* <Link to="/cse-department" className="hover:text-yellow-300 transition">
               CSE DEPARTMENT
-            </Link>
+            </Link> */}
             <Link to="/about" className="hover:text-yellow-300 transition">ABOUT US</Link>
             <Link to="/contact" className="hover:text-yellow-300 transition">CONTACT</Link>
           </div>

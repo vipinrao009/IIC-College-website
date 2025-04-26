@@ -72,7 +72,6 @@ const GetAllGallery = () => {
                 <th className="border px-4 py-2">Title</th>
                 <th className="border px-4 py-2">Date</th>
                 <th className="border px-4 py-2">Venue</th>
-                <th className="border px-4 py-2">Type</th>
                 <th className="border px-4 py-2">Description</th>
                 <th className="border px-4 py-2">Files</th>
                 <th className="border px-4 py-2">Actions</th>
@@ -85,7 +84,6 @@ const GetAllGallery = () => {
                   <td className="border px-2 font-semibold py-1">{item.title}</td>
                   <td className="border px-2 py-1">{new Date(item.date).toLocaleDateString()}</td>
                   <td className="border px-2 py-1">{item.location}</td>
-                  <td className="border px-2 py-1">{item.type}</td>
                   <td className="border px-2 py-1 max-w-[180px] text-ellipsis overflow-hidden whitespace-nowrap" title={item.description || "—"}>
                     {item.description || "—"}
                   </td>

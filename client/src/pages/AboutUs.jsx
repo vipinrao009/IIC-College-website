@@ -49,19 +49,6 @@ const AboutUs = () => {
             <li>Connect with industry leaders through seminars and guest lectures.</li>
           </ul>
         </section>
-
-        {/* Call to Action */}
-        <section className="bg-gradient-to-r from-blue-700 to-indigo-600 text-white shadow-lg rounded-lg p-8">
-          <h2 className="text-3xl font-bold mb-4">Join Us</h2>
-          <p className="text-lg font-light mb-6">
-            Become a part of our thriving community and unlock a world of opportunities. Connect with peers, build your skills, and shape the future of technology.
-          </p>
-          <div className="flex justify-center">
-            <button className="bg-white text-blue-700 font-bold px-8 py-3 rounded-lg shadow hover:bg-gray-100 transition">
-              Join the Club
-            </button>
-          </div>
-        </section>
       </main>
     </div>
     </Layout>
