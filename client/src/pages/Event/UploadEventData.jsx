@@ -12,7 +12,7 @@ const UploadEventData = () => {
     location: "",
     type: "photo",
     description: "",
-    club: "",
+    club: "coding",
     theme: "",
     no_student: "",
     no_faculty: "",
@@ -72,7 +72,7 @@ const UploadEventData = () => {
 
   return (
     <div className="bg-white shadow-md p-6 rounded-md max-w-xl mx-auto mt-10">
-      <h2 className="text-2xl font-semibold text-blue-600 mb-4">Add Gallery</h2>
+      <h2 className="text-2xl font-semibold text-blue-600 mb-4">Add Event</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <select
           name="club"
