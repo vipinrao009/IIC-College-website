@@ -56,6 +56,35 @@ const GetAllGallery = () => {
     }
   };
 
+  const handleDownload = async (id) => {
+    try {
+      const response = await axiosInstance.post(
+        `/gallery/generate-pdf/${id}`,
+        {},
+        {
+          withCredentials: true,
+          responseType: 'blob',
+        }
+      );
+  
+      const blob = new Blob([response.data], { type: 'application/pdf' }); // <-- Add type
+      const url = window.URL.createObjectURL(blob);
+  
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'event-report.pdf'); // file name
+      document.body.appendChild(link); // <-- Ye already theek hai
+      link.click();
+  
+      // CLEANUP (important)
+      document.body.removeChild(link); // <- link ko remove karo
+      window.URL.revokeObjectURL(url); // <- URL ko revoke karo
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to download PDF');
+    }
+  };
+  
   useEffect(() => {
     fetchGalleries();
   }, []);
@@ -72,7 +101,7 @@ const GetAllGallery = () => {
                 <th className="border px-4 py-2">Title</th>
                 <th className="border px-4 py-2">Date</th>
                 <th className="border px-4 py-2">Venue</th>
-                <th className="border px-4 py-2">Description</th>
+                <th className="border px-4 py-2">Objective</th>
                 <th className="border px-4 py-2">Files</th>
                 <th className="border px-4 py-2">Actions</th>
               </tr>
@@ -122,18 +151,25 @@ const GetAllGallery = () => {
                         <p>No file available</p>
                     )}
                     </td>
-                  <td className="border px-2 py-1 w-40 space-x-2 text-center">
+                  <td className="border px-2 py-1 space-x-2 text-center">
                     <button
                       onClick={() => openEditModal(item)}
-                      className="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-500"
+                      className="bg-blue-400 text-black flex-auto px-3 py-1 rounded hover:bg-blue-500"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handleDelete(item._id)}
-                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                      className="bg-red-500 text-white flex-auto px-3 py-1 rounded hover:bg-red-600"
                     >
                       Delete
+                    </button>
+
+                    <button
+                      onClick={() => handleDownload(item._id)}
+                      className="bg-yellow-400 text-black flex px-3 py-1 rounded hover:bg-yellow-500"
+                    >
+                      Download
                     </button>
                   </td>
                 </tr>
