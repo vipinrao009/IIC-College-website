@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../../Context/baseUrl";
 import { toast } from "react-toastify";
+import { FaEdit, FaTrash, FaDownload } from "react-icons/fa";
 
 const GetAllGallery = () => {
   const [galleries, setGalleries] = useState([]);
@@ -152,24 +153,26 @@ const GetAllGallery = () => {
                     )}
                     </td>
                   <td className="border px-2 py-1 space-x-2 text-center">
-                    <button
-                      onClick={() => openEditModal(item)}
-                      className="bg-blue-400 text-black flex-auto px-3 py-1 rounded hover:bg-blue-500"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(item._id)}
-                      className="bg-red-500 text-white flex-auto px-3 py-1 rounded hover:bg-red-600"
-                    >
-                      Delete
-                    </button>
+                    <div className="flex gap-2 mb-2">
+                      <button
+                        onClick={() => openEditModal(item)}
+                        className="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(item._id)}
+                        className="bg-red-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300"
+                      >
+                        Delete
+                      </button>
+                    </div>
 
                     <button
                       onClick={() => handleDownload(item._id)}
-                      className="bg-yellow-400 text-black flex px-3 py-1 rounded hover:bg-yellow-500"
+                      className="bg-amber-500 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-amber-600 transition duration-300"
                     >
-                      Download
+                     <span className="flex items-center gap-2">Report<FaDownload/></span> 
                     </button>
                   </td>
                 </tr>
