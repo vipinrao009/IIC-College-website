@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../../Context/baseUrl";
 import { toast } from "react-toastify";
 import { FaEdit, FaTrash, FaDownload } from "react-icons/fa";
+import { FaSpinner } from 'react-icons/fa';
 
 const GetAllGallery = () => {
   const [galleries, setGalleries] = useState([]);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [editData, setEditData] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
+  const [downloadID, setDownloadID] = useState(null)
+  const [deleteID, setDeleteID] = useState(null)
 
   const fetchGalleries = async () => {
     try {
@@ -23,6 +26,7 @@ const GetAllGallery = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
     try {
+      setDeleteID(id)
       await axiosInstance.delete(`/gallery/delete/${id}`, {
         withCredentials: true,
       });
@@ -30,6 +34,8 @@ const GetAllGallery = () => {
       fetchGalleries(); // Refresh
     } catch (err) {
       toast.error("Delete failed");
+    }finally{
+      setDeleteID(null)
     }
   };
 
@@ -59,6 +65,7 @@ const GetAllGallery = () => {
 
   const handleDownload = async (id) => {
     try {
+      setDownloadID(id)
       const response = await axiosInstance.post(
         `/gallery/generate-pdf/${id}`,
         {},
@@ -83,6 +90,8 @@ const GetAllGallery = () => {
     } catch (error) {
       console.error(error);
       toast.error('Failed to download PDF');
+    }finally{
+      setDownloadID(null)
     }
   };
   
@@ -164,7 +173,11 @@ const GetAllGallery = () => {
                         onClick={() => handleDelete(item._id)}
                         className="bg-red-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300"
                       >
-                        Delete
+                        {deleteID === item._id ? (
+                          <FaSpinner className="animate-spin" />
+                        ):(
+                          <span>Delete</span>
+                        )}
                       </button>
                     </div>
 
@@ -172,7 +185,11 @@ const GetAllGallery = () => {
                       onClick={() => handleDownload(item._id)}
                       className="bg-amber-500 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-amber-600 transition duration-300"
                     >
-                     <span className="flex items-center gap-2">Report<FaDownload/></span> 
+                     {downloadID === item._id ? (
+                      <FaSpinner className="animate-spin" />
+                     ):(
+                      <span className="flex items-center gap-2">Report<FaDownload/></span> 
+                     )}
                     </button>
                   </td>
                 </tr>
