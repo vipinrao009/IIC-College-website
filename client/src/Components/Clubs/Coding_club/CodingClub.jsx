@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../../../Layout/Layout'
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 
 const CodingClub = () => {
+  const {clubName} =  useParams()
+ 
   return (
     <Layout>
       <div className="font-sans">
@@ -10,7 +13,7 @@ const CodingClub = () => {
       <header className="bg-gray-800 text-white py-6">
         <div className="container mx-auto flex justify-between items-center px-4">
           <nav className="flex text-right font-semibold space-x-6">
-            <Link to={'/events'} className="hover:text-gray-300">Events</Link>
+            <Link to={`/club/${clubName}/events`} className="hover:text-gray-300">Events</Link>
           </nav>
         </div>
       </header>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Tabs, Spin } from 'antd';
 import Layout from '../Layout/Layout';
 import axiosInstance from '../Context/baseUrl';
-import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
 
 const YearWiseEvent = () => {
   const [tabPosition] = useState('left');
@@ -12,17 +12,14 @@ const YearWiseEvent = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
   const [previewImage, setPreviewImage] = useState(null);
-
+  const { clubName } = useParams();
   const fetchGalleriesByYear = async (year) => {
     setLoading(true);
     try {
-      const { data } = await axiosInstance.get(`/gallery/fetch?year=${year}`, {
-        withCredentials: true,
-      });
+      const { data } = await axiosInstance.get("/gallery/fetch",{params: { club: clubName, year }});
       setGalleries(data.gallery || []);
     } catch (error) {
       setGalleries([]);
-      toast.error('Failed to load gallery');
     } finally {
       setLoading(false);
     }
@@ -31,7 +28,7 @@ const YearWiseEvent = () => {
   useEffect(() => {
     setCurrentPage(1); // Reset page when year changes
     fetchGalleriesByYear(activeYear);
-  }, [activeYear]);
+  }, [activeYear,clubName]);
 
   const handleTabChange = (key) => {
     setActiveYear(key);

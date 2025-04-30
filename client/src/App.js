@@ -15,16 +15,7 @@ import AdminMenu from './pages/Notices/AdminMenu';
 import Event from "./pages/Upcoming_event/Event"
 import EventData from './pages/Event/EventData';
 import YearWiseEvent from './pages/YearWiseEvent';
-import CodingClub from './Components/Clubs/Coding_club/CodingClub';
-import RoboticClub from './Components/Clubs/Robotic club/RoboticClub';
-import GateClub from './Components/Clubs/Gate_club/GateClub';
-import GamingClub from './Components/Clubs/Gaming_club/GamingClub';
-import AutocadClub from './Components/Clubs/Autocad_club/AutocadClub';
-import HackthonClub from './Components/Clubs/Hackthon_club/HackthonClub';
-import TNPClub from './Components/Clubs/TNP_club/TNP_club';
-import SportClub from './Components/Clubs/Sport_club/SportClub';
-import AutomobileClub from './Components/Clubs/Automobile_club/AutomobileClub';
-import MaintenanceClub from './Components/Clubs/Maintenance_club/MaintenanceClub';
+import ClubDetails from './Components/ClubDetails';
 
 function App() {
   return (
@@ -35,18 +26,9 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/cse-department" element={<CseDepartment />} />
-        <Route path="/club/coding" element={<CodingClub />} />
-        <Route path="/club/robotic" element={<RoboticClub />} />
-        <Route path="/club/gate" element={<GateClub />} />
-        <Route path="/club/gaming" element={<GamingClub />} />
-        <Route path="/club/autocad" element={<AutocadClub />} />
-        <Route path="/club/hackthon" element={<HackthonClub />} />
-        <Route path="/club/placement" element={<TNPClub />} />
-        <Route path="/club/sport" element={<SportClub />} />
-        <Route path="/club/automobile" element={<AutomobileClub />} />
-        <Route path="/club/maintenance" element={<MaintenanceClub />} />
+        <Route path="/club/:clubName" element={<ClubDetails />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/events" element={<YearWiseEvent />} />
+        <Route path="/club/:clubName/events" element={<YearWiseEvent />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/notice" element={<AdminMenu />} />

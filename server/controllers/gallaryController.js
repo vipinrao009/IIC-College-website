@@ -51,9 +51,12 @@ export const uploadGallery = AsyncHandler(async (req, res, next) => {
 });
 
 export const fetchGallary = AsyncHandler(async (req, res, next) => {
-  const { year } = req.query;
+  const { year, club } = req.query;
 
   let query = {};
+  if (club) {
+    query.club = club; 
+  }
   if (year) {
     const startOfYear = new Date(`${year}-01-01T00:00:00.000Z`);
     const endOfYear = new Date(`${parseInt(year) + 1}-01-01T00:00:00.000Z`);
