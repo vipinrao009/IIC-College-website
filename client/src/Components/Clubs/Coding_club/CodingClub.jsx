@@ -68,12 +68,12 @@ const CodingClub = () => {
           <p className="text-gray-700 mb-6">
             Ready to level up your coding journey? Join our community!
           </p>
-          <a
-            href="#join"
+          <button
+            
             className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600"
           >
             Join Now
-          </a>
+          </button>
         </div>
       </section>
     </div>
