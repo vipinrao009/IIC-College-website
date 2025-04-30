@@ -18,6 +18,7 @@ const UploadEventData = () => {
     no_faculty: "",
     speaker: "",
     outcome: "",
+    summary: "",
     event_for: ""
   });
   const [files, setFiles] = useState([]);
@@ -48,6 +49,7 @@ const UploadEventData = () => {
       payload.append("no_faculty", formData.no_faculty);
       payload.append("speaker", formData.speaker);
       payload.append("outcome", formData.outcome);
+      payload.append("summary", formData.summary);
       payload.append("event_for", formData.event_for);
       for (let i = 0; i < files.length; i++) {
         payload.append("files", files[i]);
@@ -171,6 +173,15 @@ const UploadEventData = () => {
           value={formData.description}
           onChange={handleChange}
           placeholder="Event objective"
+          rows="3"
+          className="w-full p-2 border rounded"
+        ></textarea>
+        
+        <textarea
+          name="summary"
+          value={formData.summary}
+          onChange={handleChange}
+          placeholder="Event summary"
           rows="3"
           className="w-full p-2 border rounded"
         ></textarea>

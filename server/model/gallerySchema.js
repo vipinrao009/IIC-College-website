@@ -39,6 +39,9 @@ const gallerySchema = new mongoose.Schema({
   outcome: {
     type: String
   },
+  summary:{
+    type: String
+  },
   event_for: {
     type: String
   },

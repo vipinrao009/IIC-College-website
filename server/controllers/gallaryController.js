@@ -5,7 +5,7 @@ import { Gallery } from "../model/gallerySchema.js";
 import pdf from "html-pdf-node";
 
 export const uploadGallery = AsyncHandler(async (req, res, next) => {
-    const { title, date, location, type, description, club, theme, no_student, no_faculty, speaker, outcome, event_for } = req.body;
+    const { title, date, location, type, description, club, theme, no_student, no_faculty, speaker, outcome, summary, event_for } = req.body;
     
     if (!title || !date || !location || !type || !theme || !club || !req.files || req.files.length === 0) {
       return next(new ErrorHandler("All fields and at least one file are required", 400));
@@ -39,7 +39,8 @@ export const uploadGallery = AsyncHandler(async (req, res, next) => {
         no_student, 
         no_faculty, 
         speaker, 
-        outcome, 
+        outcome,
+        summary, 
         event_for
     });
 
@@ -115,9 +116,7 @@ export const deleteGallery = AsyncHandler(async (req, res, next) => {
 
 export const editGallery = AsyncHandler(async (req, res, next) => {
   const { id } = req.params;
-  const { title, date, type, description } = req.body;
-
-  console.log(date)
+  const { title, date, type, description,summary } = req.body;
 
   if (!id) {
     return next(new ErrorHandler("ID is required for updation", 400));
@@ -137,6 +136,7 @@ export const editGallery = AsyncHandler(async (req, res, next) => {
   gallery.date = date || date;
   gallery.type = type || gallery.type;
   gallery.description = description || gallery.description;
+  gallery.summary = summary || gallery.summary;
 
   await gallery.save();
 
@@ -155,54 +155,88 @@ export const generatePDF = AsyncHandler(async (req, res) => {
 
   const logoUrl = "https://res.cloudinary.com/df3ykvedg/image/upload/v1745841124/IIC%20college%20website/PDF_fcshcu.png";
 
+  // Utility function to split long text into parts
+  const splitTextIntoPages = (text, maxChars = 2195) => {
+    const paragraphs = text.split('\n');
+    const pages = [];
+    let current = '';
+
+    for (const para of paragraphs) {
+      if ((current + para).length > maxChars) {
+        pages.push(current);
+        current = para + '\n';
+      } else {
+        current += para + '\n';
+      }
+    }
+
+    if (current.trim()) pages.push(current);
+    return pages;
+  };
+
+  const summary = splitTextIntoPages(event.summary);
+
   const htmlContent = `
     <html>
       <head>
         <style>
+          @page {
+            margin: 0px;
+          }
+
           body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
+            margin: 0;
             padding: 0;
-            background: #f9f9f9;
+            font-family: Arial, sans-serif;
           }
-          .header {
-            text-align: center;
-            margin-bottom: 20px;
-          }
-          .logo {
-            height: 200px;
-            width:100%
-          }
-          .title {
-            font-size: 26px;
-            font-weight: bold;
-            margin-top: 10px;
-            color: #333;
-          }
-          .report-box {
-            background: #fff;
+
+          .page-box {
             border: 2px solid #ddd;
             border-radius: 10px;
             padding: 30px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin: 40px;
+            box-sizing: border-box;
+            height: 1000px;
+            page-break-after: always;
+            position: relative;
           }
-          .section {
+
+          .header {
+            text-align: center;
             margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+          }
+          .logo {
+            height: 180px;
+            width:100%
+          }
+
+          .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            margin-top: 10px;
+            margin-bottom: 10px
+        
+          }
+
+          .section {
+            margin-bottom: 15px;
             font-size: 16px;
             line-height: 1.6;
           }
-          .section strong {
+
+          strong {
             color: black;
           }
         </style>
       </head>
       <body>
-        <div class="header">
-          <img src="${logoUrl}" class="logo" alt="Logo" />
-          <div class="title">IIC EVENT SUMMARY REPORT</div>
-        </div>
-
-        <div class="report-box">
+        <div class="page-box">
+          <div class="header">
+            <img src="${logoUrl}" class="logo" />
+            <div class="title">IIC EVENT SUMMARY REPORT</div>
+          </div>
           <div class="section"><strong>Name of Event:</strong> ${event.title}</div>
           <div class="section"><strong>Dates of Event:</strong> ${new Date(event.date).toLocaleDateString()}</div>
           <div class="section"><strong>Venue of Event:</strong> ${event.location}</div>
@@ -210,10 +244,16 @@ export const generatePDF = AsyncHandler(async (req, res) => {
           <div class="section"><strong>Event for Students/Faculty/Both:</strong> ${event.event_for}</div>
           <div class="section"><strong>No. of Students Present:</strong> ${event.no_student}</div>
           <div class="section"><strong>No. of Faculty Present:</strong> ${event.no_faculty}</div>
-          <div class="section"><strong>Speakers Invited (Internal):</strong> ${event.speaker}</div>
+          <div class="section"><strong>Speakers Invited:</strong> ${event.speaker}</div>
           <div class="section"><strong>Event Objective:</strong> ${event.description}</div>
-          <div class="section"><strong>Event Outcomes:</strong> ${event.outcome}</div>
+          <div class="section"><strong>Event Outcome:</strong> ${event.outcome}</div>
         </div>
+
+        ${summary.map(text => `
+          <div class="page-box">
+            <div class="section"><strong>Event Summary:</strong><br/> ${text.replace(/\n/g, "<br/>")}</div>
+          </div>
+        `).join('')}
       </body>
     </html>
   `;

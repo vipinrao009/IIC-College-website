@@ -261,6 +261,13 @@ const GetAllGallery = () => {
                 <option value="pdf">PDF</option>
               </select>
               <textarea
+                name="summary"
+                value={editData.summary}
+                onChange={handleEditChange}
+                placeholder="Event Summary"
+                className="w-full border p-2 rounded"
+              ></textarea>
+              <textarea
                 name="description"
                 value={editData.description}
                 onChange={handleEditChange}
