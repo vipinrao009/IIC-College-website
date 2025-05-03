@@ -4,7 +4,7 @@ import { addEvent, deleteEvent, getAllEvents, updateEvent } from "../controllers
 const router = express.Router()
 
 router.post("/add-event",isAuthenticated,addEvent);
-router.get("/get-event",isAuthenticated,getAllEvents);
+router.get("/get-event",getAllEvents);
 router.put("/update-event/:id",isAuthenticated,updateEvent);
 router.delete("/delete-event/:id",isAuthenticated,deleteEvent);
 

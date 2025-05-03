@@ -4,7 +4,7 @@ import { addNotice, deleteNotice, getAllNotices, updateNotice } from "../control
 const router = express.Router()
 
 router.post("/add",isAuthenticated,addNotice);
-router.get("/fetch",isAuthenticated,getAllNotices);
+router.get("/fetch",getAllNotices);
 router.put("/update/:id",isAuthenticated,updateNotice);
 router.delete("/delete/:id",isAuthenticated,deleteNotice);
 
