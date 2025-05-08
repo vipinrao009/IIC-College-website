@@ -2,7 +2,8 @@ import AsyncHandler from "../middleware/AsyncHandler.js";
 import ErrorHandler from "../middleware/Error.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { Gallery } from "../model/gallerySchema.js";
-import pdf from "html-pdf-node";
+import chromium from 'chrome-aws-lambda';
+import puppeteer from 'puppeteer-core';
 
 export const uploadGallery = AsyncHandler(async (req, res, next) => {
     const { title, date, location, type, description, club, theme, no_student, no_faculty, speaker, outcome, summary, event_for } = req.body;
@@ -149,13 +150,11 @@ export const editGallery = AsyncHandler(async (req, res, next) => {
 
 export const generatePDF = AsyncHandler(async (req, res) => {
   const { id } = req.params;
-
   const event = await Gallery.findById(id);
   if (!event) return res.status(404).json({ message: 'Event not found' });
 
   const logoUrl = "https://res.cloudinary.com/df3ykvedg/image/upload/v1745841124/IIC%20college%20website/PDF_fcshcu.png";
 
-  // Utility function to split long text into parts
   const splitTextIntoPages = (text, maxChars = 2195) => {
     const paragraphs = text.split('\n');
     const pages = [];
@@ -183,13 +182,11 @@ export const generatePDF = AsyncHandler(async (req, res) => {
           @page {
             margin: 0px;
           }
-
           body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
           }
-
           .page-box {
             border: 2px solid #ddd;
             border-radius: 10px;
@@ -200,7 +197,6 @@ export const generatePDF = AsyncHandler(async (req, res) => {
             page-break-after: always;
             position: relative;
           }
-
           .header {
             text-align: center;
             margin-bottom: 20px;
@@ -208,24 +204,20 @@ export const generatePDF = AsyncHandler(async (req, res) => {
           }
           .logo {
             height: 180px;
-            width:100%
+            width: 100%;
           }
-
           .title {
             font-size: 24px;
             font-weight: bold;
             color: black;
             margin-top: 10px;
-            margin-bottom: 10px
-        
+            margin-bottom: 10px;
           }
-
           .section {
             margin-bottom: 15px;
             font-size: 16px;
             line-height: 1.6;
           }
-
           strong {
             color: black;
           }
@@ -258,10 +250,16 @@ export const generatePDF = AsyncHandler(async (req, res) => {
     </html>
   `;
 
-  const file = { content: htmlContent };
-  const options = { format: 'A4' };
+  const browser = await puppeteer.launch({
+    args: chromium.args,
+    executablePath: await chromium.executablePath || '/usr/bin/chromium-browser',
+    headless: chromium.headless,
+  });
 
-  const pdfBuffer = await pdf.generatePdf(file, options);
+  const page = await browser.newPage();
+  await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+  const pdfBuffer = await page.pdf({ format: 'A4' });
+  await browser.close();
 
   res.set({
     'Content-Type': 'application/pdf',
