@@ -2,7 +2,7 @@ import AsyncHandler from "../middleware/AsyncHandler.js";
 import ErrorHandler from "../middleware/Error.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { Gallery } from "../model/gallerySchema.js";
-import chromium from 'chrome-aws-lambda';
+import chromium from '@sparticuz/chromium';
 import puppeteer from 'puppeteer-core';
 
 export const uploadGallery = AsyncHandler(async (req, res, next) => {
@@ -250,10 +250,10 @@ export const generatePDF = AsyncHandler(async (req, res) => {
     </html>
   `;
 
-  const browser = await puppeteer.launch({
+    const browser = await puppeteer.launch({
+    headless: true,
     args: chromium.args,
-    executablePath: await chromium.executablePath || '/usr/bin/chromium-browser',
-    headless: chromium.headless,
+    executablePath: await chromium.executablePath(),
   });
 
   const page = await browser.newPage();
