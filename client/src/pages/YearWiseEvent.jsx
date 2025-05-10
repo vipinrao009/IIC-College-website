@@ -38,7 +38,7 @@ const YearWiseEvent = () => {
     setActiveYear(key);
   };
 
-  const years = ['2025','2024', '2023',];
+  const years = ['2025','2024', '2023', '2022'];
 
   // Flatten files from all events and attach meta info
   const paginatedGalleries = galleries.flatMap((event) =>
