@@ -51,7 +51,7 @@ const Login = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen flex items-center justify-center bg-orange-100">
+      <div className="min-h-screen flex items-center justify-center bg-indigo-100">
         <div className="flex w-full max-w-6xl bg-white rounded-lg shadow-lg overflow-hidden">
         {/* Logo Section */}
        <div className=" flex items-center justify-center bg-orange-200">
@@ -60,7 +60,7 @@ const Login = () => {
 
         {/* Login Form */}
         <div className="bg-white p-10 rounded shadow-md w-full max-w-md">
-          <h1 className="text-center pb-6 text-2xl font-bold">Login</h1>
+          <h1 className="text-center pb-6 text-2xl font-bold">Administrator Login</h1>
           <form onSubmit={handleLogin}>
             {/* Email Input */}
             <input
@@ -91,11 +91,7 @@ const Login = () => {
             </div>
 
             {/* Remember Me and Forgot Password */}
-            <div className="flex items-center justify-between mb-4">
-              <label className="flex items-center text-gray-700">
-                <input type="checkbox" className="mr-2" />
-                Remember me
-              </label>
+            <div className="flex items-center justify-end mb-4">
               <Link
                 onClick={openModal}
                 className="text-blue-500 font-semibold hover:text-blue-600"
@@ -107,14 +103,14 @@ const Login = () => {
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600 transition duration-300"
+              className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition mt-8 duration-300"
             >
               Login
             </button>
           </form>
 
           {/* Register Link */}
-          <div className="mt-4 text-center">
+          {/* <div className="mt-4 text-center">
             <p className="text-gray-700">
               Don&apos;t have an account?{' '}
               <Link
@@ -124,7 +120,7 @@ const Login = () => {
                 Register here
               </Link>
             </p>
-          </div>
+          </div> */}
         </div>
 
         {/* Modal for Forgot Password */}
