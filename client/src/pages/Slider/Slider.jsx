@@ -32,7 +32,7 @@ const AutoImageSlider = () => {
             <img
               src={image}
               alt={`slide-${index}`}
-              className="w-full h-[85vh] object-cover"
+              className="w-full h-[40vh] md:h-[85vh] object-cover"
             />
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
