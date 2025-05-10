@@ -6,7 +6,7 @@ import UploadedEventData from './UploadedEventData';
 
 
 const EventData = () => {
-  const [tabPosition] = useState('left');
+  const tabPosition = window.innerWidth < 768 ? "top" : "left";
 
   // Tab config
   const tabs = [

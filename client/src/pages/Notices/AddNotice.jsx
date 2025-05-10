@@ -53,7 +53,7 @@ const AddNotice = () => {
           />
         </div>
 
-        <div>
+        {/* <div>
           <label className="block text-sm font-medium text-gray-700">Notice Link (optional)</label>
           <input
             type="text"
@@ -63,9 +63,9 @@ const AddNotice = () => {
             className="mt-1 w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
             placeholder="e.g. https://example.com/notice.pdf"
           />
-        </div>
+        </div> */}
 
-        <div className="flex items-center gap-2">
+        {/* <div className="flex items-center gap-2">
           <input
             type="checkbox"
             name="visible"
@@ -74,7 +74,7 @@ const AddNotice = () => {
             className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
           />
           <label className="text-sm text-gray-700">Visible to users</label>
-        </div>
+        </div> */}
 
         <button
           type="submit"

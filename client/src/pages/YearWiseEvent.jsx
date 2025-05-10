@@ -5,7 +5,6 @@ import axiosInstance from '../Context/baseUrl';
 import { useParams } from 'react-router-dom';
 
 const YearWiseEvent = () => {
-  const [tabPosition] = useState('left');
   const [galleries, setGalleries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeYear, setActiveYear] = useState('2025'); // default tab
@@ -15,6 +14,8 @@ const YearWiseEvent = () => {
   const [activeFileIndex, setActiveFileIndex] = useState(0);
   const [PreviewDetails, setPreviewDetails] = useState(null)
   const { clubName } = useParams();
+
+  const tabPosition = window.innerWidth < 768 ? "top" : "left";
 
   const fetchGalleriesByYear = async (year) => {
     setLoading(true);
@@ -95,7 +96,7 @@ const YearWiseEvent = () => {
                           setPreviewDetails(event)
                           setActiveFileIndex(0);
                         }}
-                        className="w-72 h-48 object-cover cursor-pointer"
+                        className="w-96 md:w-72 h-48 object-cover cursor-pointer"
                       />
                       <div className="p-2 bg-sky-200">
                         <h3 className="text-lg text-center font-semibold">{event.title}</h3>
