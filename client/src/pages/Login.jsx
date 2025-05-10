@@ -54,7 +54,7 @@ const Login = () => {
       <div className="min-h-screen flex items-center justify-center bg-indigo-100">
         <div className="flex w-full max-w-6xl bg-white rounded-lg shadow-lg overflow-hidden">
         {/* Logo Section */}
-       <div className=" flex items-center justify-center bg-orange-200">
+        <div className="items-center hidden md:flex justify-center bg-orange-200">
           <img src={logo} alt="iet_logo" className=" h-auto object-contain" />
         </div>
 
