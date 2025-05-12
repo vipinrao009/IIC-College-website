@@ -7,6 +7,7 @@ import userRouter from "./routes/userRouter.js"
 import noticeRouter from "./routes/noticeRouter.js"
 import eventRouter from "./routes/eventRouter.js"
 import gallaryRouter from "./routes/gallaryRouter.js"
+import clubRouter from "./routes/joinClubRouter.js"
 import { ErrorMiddleware } from "./middleware/Error.js";
 const app = express()
 
@@ -24,6 +25,7 @@ app.use("/api/v1/user",userRouter)
 app.use("/api/v1/notice",noticeRouter)
 app.use("/api/v1/event",eventRouter)
 app.use("/api/v1/gallery",gallaryRouter)
+app.use("/api/v1/club",clubRouter)
 
 app.use(ErrorMiddleware)
 

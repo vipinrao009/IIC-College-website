@@ -13,13 +13,22 @@ const joinClub = new Schema({
         type: String,
         required: [true, "Phone no is required"]
     },
+    roll: {
+        type: String,
+        required: [true, "Phone no is required"]
+    },
+    year: {
+        type: String,
+        enum: ["I year", "II year", "III year", "IV year"],
+        required: [true, "year is required"]
+    },
     club: {
         type: String,
-        enum: ["coding", "robotic", "gaming", "hackthon", "gate", "automobile", "sport", "placement", "autocad", "maintenance", "iot", "cultural", "infra", "poster"],
+        // enum: ["coding", "robotic", "gaming", "hackthon", "gate", "automobile", "sport", "placement", "autocad", "maintenance", "iot", "cultural", "infra", "poster"],
         required: [true, "club is required"]
     },
 }, {
     timestamps: true
 });
 
-export const Notice = model("Club", joinClub);
+export const Club = model("Club", joinClub);
