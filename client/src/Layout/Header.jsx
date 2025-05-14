@@ -116,10 +116,10 @@ const Navbar = () => {
           <h2 className='md:hidden font-medium'>IET CLUB NEST</h2>
           {/* Main Nav */}
           <div className="hidden md:flex gap-8">
-            <Link to="/" className="hover:text-yellow-300">HOME</Link>
+            <Link to="/" className="hover:text-yellow-300 md:font-semibold">HOME</Link>
 
             <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="relative">
-              <div className="hover:text-yellow-300 cursor-pointer">CLUBS</div>
+              <div className="hover:text-yellow-300 md:font-semibold cursor-pointer">CLUBS</div>
               {isDropdownOpen && (
                 <div className="absolute bg-white text-gray-800 rounded-md shadow-lg top-full left-0 z-50 mt-2 w-44">
                   {clubLinks.map((club) => (
@@ -135,8 +135,8 @@ const Navbar = () => {
               )}
             </div>
 
-            <Link to="/about" className="hover:text-yellow-300">ABOUT US</Link>
-            <Link to="/contact" className="hover:text-yellow-300">CONTACT</Link>
+            <Link to="/about" className="hover:text-yellow-300 md:font-semibold">ABOUT US</Link>
+            <Link to="/contact" className="hover:text-yellow-300 md:font-semibold">CONTACT</Link>
           </div>
 
           {/* Right Side Auth */}

@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../../../Layout/Layout'
 import { Link, useParams } from 'react-router-dom'
+import JoinClubModal from '../../JoinClubModal '
 
 const RoboticClub = () => {
   const {clubName} =  useParams()
+  const [modalOpen, setModalOpen] = useState(false);
+
     return (
         <Layout>
           <div className="font-sans">
@@ -61,12 +64,18 @@ const RoboticClub = () => {
               <p className="text-gray-700 mb-6">
                 Ready to level up your Robotics journey? Join our community!
               </p>
-              <a
-                href="#join"
+              <button
+                onClick={() => setModalOpen(true)}
                 className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600"
               >
                 Join Now
-              </a>
+              </button>
+
+              <JoinClubModal
+                isOpen={modalOpen}
+                onClose={() => setModalOpen(false)}
+                clubName={clubName}
+              />
             </div>
           </section>
         </div>
