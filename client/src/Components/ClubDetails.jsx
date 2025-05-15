@@ -9,6 +9,9 @@ import TNPClub from "./Clubs/TNP_club/TNP_club";
 import SportClub from "./Clubs/Sport_club/SportClub";
 import AutomobileClub from "./Clubs/Automobile_club/AutomobileClub";
 import MaintenanceClub from "./Clubs/Maintenance_club/MaintenanceClub";
+import AiIotClub from "./Clubs/AI & IOT_club/AiIotClub";
+import CulturalClub from "./Clubs/Cultural_club/CulturalClub";
+import PosterClub from "./Clubs/Poster Club/PosterClub";
 
 const clubComponents = {
   coding: CodingClub,
@@ -20,7 +23,10 @@ const clubComponents = {
   sport: SportClub,
   automobile: AutomobileClub,
   maintenance: MaintenanceClub,
-  placement: TNPClub
+  placement: TNPClub,
+  iot:AiIotClub,
+  cultural:CulturalClub,
+  poster:PosterClub,
 };
 
 const ClubDetails = () => {

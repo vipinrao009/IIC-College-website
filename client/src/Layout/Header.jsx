@@ -49,11 +49,14 @@ const Navbar = () => {
     { name: "Gate Club", to: "/club/gate" },
     { name: "E-Gaming Club", to: "/club/gaming" },
     { name: "AutoCAD Club", to: "/club/autocad" },
+    { name: "AI & IOT Club", to: "/club/iot" },
     { name: "Hackthon Club", to: "/club/hackthon" },
     { name: "Automobile Club", to: "/club/automobile" },
     { name: "Maintenance Club", to: "/club/maintenance" },
     { name: "Sport Club", to: "/club/sport" },
     { name: "Training & Placement Club", to: "/club/placement" },
+    { name: "Cultural Club", to: "/club/cultural" },
+    { name: "Poster Club", to: "/club/poster" },
   ];
 
   const dashboardMenu = (
