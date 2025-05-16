@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -25,10 +26,10 @@ const Footer = () => {
 
         {/* Social Media Icons */}
          <div className="mt-6 text-2xl md:mt-0 flex space-x-6">
-         <FaFacebook/>
-         <FaTwitter/>
-         <FaYoutube/>
-         <FaInstagram/>
+         <Link to={"https://www.facebook.com/IETDBRAUAGRA"} className="hover:text-blue-300"><FaFacebook/></Link>
+         <Link  className="hover:text-blue-300"><FaTwitter/></Link>
+         <Link  className="hover:text-blue-300"><FaYoutube/></Link>
+         <Link  className="hover:text-blue-300"><FaInstagram/></Link>
         </div> 
       </div>
 
@@ -37,7 +38,7 @@ const Footer = () => {
 
   
       <div className="container mt-4 mx-auto text-center">
-          <p>© 2024 CSE Department | All Rights Reserved</p>
+          <p>© 2025 CSE Department | All Rights Reserved</p>
         </div>
     </footer>
   );
