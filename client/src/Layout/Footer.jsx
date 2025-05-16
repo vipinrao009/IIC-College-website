@@ -27,9 +27,9 @@ const Footer = () => {
         {/* Social Media Icons */}
          <div className="mt-6 text-2xl md:mt-0 flex space-x-6">
          <Link to={"https://www.facebook.com/IETDBRAUAGRA"} className="hover:text-blue-300"><FaFacebook/></Link>
-         <Link  className="hover:text-blue-300"><FaTwitter/></Link>
-         <Link  className="hover:text-blue-300"><FaYoutube/></Link>
-         <Link  className="hover:text-blue-300"><FaInstagram/></Link>
+         <Link to={"https://x.com/dbrauagra?t=eYqZs1fpM2LdMZK-a7YqfA&s=09"} className="hover:text-blue-300"><FaTwitter/></Link>
+         <Link to={"https://youtube.com/@drbhimraoambedkaruniversit6515?si=maUn_O9ISN89VWY0"} className="hover:text-blue-300"><FaYoutube/></Link>
+         <Link to={"https://www.instagram.com/dr_bhimrao_ambedkar_university?igsh=eTdteXU4dDVhdDRz"} className="hover:text-blue-300"><FaInstagram/></Link>
         </div> 
       </div>
 
