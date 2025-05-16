@@ -11,7 +11,7 @@ import AutomobileClub from "./Clubs/Automobile_club/AutomobileClub";
 import MaintenanceClub from "./Clubs/Maintenance_club/MaintenanceClub";
 import AiIotClub from "./Clubs/AI & IOT_club/AiIotClub";
 import CulturalClub from "./Clubs/Cultural_club/CulturalClub";
-import PosterClub from "./Clubs/Poster Club/PosterClub";
+import PosterClub from "./Clubs/Poster Club/PosterClub";  
 
 const clubComponents = {
   coding: CodingClub,
