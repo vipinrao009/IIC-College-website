@@ -58,10 +58,15 @@ const YearWiseEvent = () => {
     currentPage * itemsPerPage
   );
 
+  const capitalizeFirstLetter = (str)=>{
+    if(!str) return;
+    return str.charAt(0).toUpperCase() + str.slice(1)
+  }
+
   return (
     <Layout>
       <div className="p-4">
-        <h2 className="text-2xl font-bold text-center mb-4">Year-wise Events</h2>
+        <h2 className="text-2xl font-bold text-center mb-4">{capitalizeFirstLetter(clubName)} Club</h2>
         <Tabs
         tabPosition={tabPosition}
         defaultActiveKey={activeYear}
