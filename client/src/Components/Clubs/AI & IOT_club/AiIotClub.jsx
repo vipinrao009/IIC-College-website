@@ -11,10 +11,17 @@ const AiIotClub = () => {
         <Layout>
           <div className="font-sans">
           {/* Header Section */}
-          <header className="bg-gray-800 text-white py-6">
-            <div className="container mx-auto flex justify-between items-center px-4">
-              <nav className="flex text-right font-semibold space-x-6">
-               <Link to={`/club/${clubName}/events`} className="hover:text-gray-300">Events</Link>
+          <header className="bg-gray-800 text-white py-6 shadow-lg z-10 relative">
+            <div className="container mx-auto flex justify-between items-center px-3">
+              <nav>
+                <Link
+                  to={`/club/${clubName}/events`}
+                  className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold px-4 py-2 rounded-full border-4 border-yellow-500 animate-pulse
+                  hover:from-yellow-500 hover:to-red-400 hover:shadow-yellow-500/80 hover:shadow-2xl transition-all duration-300 relative overflow-hidden"
+                >
+                  <span className="relative z-10"> View Events</span>
+                
+                </Link>
               </nav>
             </div>
           </header>
