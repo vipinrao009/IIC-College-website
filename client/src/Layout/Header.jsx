@@ -71,6 +71,9 @@ const Navbar = () => {
         <Link to="/event">Event Data</Link>
       </Menu.Item>
       <Menu.Item key="4">
+        <Link to="/join">Club Students</Link>
+      </Menu.Item>
+      <Menu.Item key="5">
         <span onClick={handleLogOut} className="cursor-pointer">
           Logout
         </span>

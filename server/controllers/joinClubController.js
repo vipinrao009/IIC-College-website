@@ -29,3 +29,34 @@ export const joinClub = AsyncHandler(async (req, res, next) => {
         result
     });
 });
+
+export const fetchClub = AsyncHandler(async (req, res, next) => {
+    const students = await Club.find().sort({ createdAt: -1 });
+
+    if (!students || students.length === 0) {
+        return next(new ErrorHandler("No student found", 404));
+    }
+
+    res.status(200).json({
+        message: "Students fetched successfully",
+        success: true,
+        students
+    });
+});
+
+export const deleteStudent = AsyncHandler(async (req, res, next) => {
+  const { id } = req.params;
+
+  const student = await Club.findById(id);
+
+  if (!student) {
+    return next(new ErrorHandler("Student not found", 404));
+  }
+
+  await student.deleteOne();
+
+  res.status(200).json({
+    success: true,
+    message: "Student deleted successfully",
+  });
+});

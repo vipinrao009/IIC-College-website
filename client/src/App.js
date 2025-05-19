@@ -16,6 +16,7 @@ import Event from "./pages/Upcoming_event/Event"
 import EventData from './pages/Event/EventData';
 import YearWiseEvent from './pages/YearWiseEvent';
 import ClubDetails from './Components/ClubDetails';
+import Joined_Students from './pages/Join Club/Joined_Students';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/notice" element={<AdminMenu />} />
         <Route path="/upcoming-event" element={<Event />} />
         <Route path="/event" element={<EventData />} />
+        <Route path="/join" element={<Joined_Students />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
