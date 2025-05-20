@@ -70,18 +70,19 @@ export const login = AsyncHandler(async(req,res,next)=>{
     generateToken(user,"User login succesfully",200,res)
 })
 
-export const logout = AsyncHandler(async(req,res,next)=>{
-    res
-       .status(200)
-       .cookie("token"," ",{
-        expire: new Date(Date.now),
-        httpOnly:true
-       })
-       .json({
-        success:true,
-        message:"User logout successfully"
-       })
-})
+export const logout = AsyncHandler(async (req, res, next) => {
+  res
+    .clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
+    })
+    .status(200)
+    .json({
+      success: true,
+      message: "User logged out successfully",
+    });
+});
 
 export const getProfile = AsyncHandler(async(req,res,next)=>{
     const user = req.user
