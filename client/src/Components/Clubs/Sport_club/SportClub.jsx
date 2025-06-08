@@ -30,12 +30,12 @@ const SportClub = () => {
           <section
             className="relative bg-cover bg-center text-white py-12 px-4"
             style={{
-              backgroundImage: `url(https://img.freepik.com/free-photo/gray-painted-background_53876-94041.jpg?t=st=1745577797~exp=1745581397~hmac=2e7a0e335007c4a78de872365a00ede136ddc770fd81cf6089ab8e34a86fe3f3&w=1380)`, // Replace with your image path
+              backgroundImage: `url(https://img.freepik.com/free-photo/gray-painted-background_53876-94041.jpg?ga=GA1.1.2080037726.1734370406&semt=ais_hybrid&w=740)`, // Replace with your image path
             }}
           >
             <div className="container mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Welcome to Institute Of Engineering And Technology, Khandari Sport Club!
+                Welcome to Sport Club!
               </h1>
               <p className="text-lg md:text-xl">
               The Sports Club is the heart of campus life, promoting physical fitness, team spirit, and a healthy competitive environment. It brings together students who are passionate about sports and athletics, providing a platform to train, compete, and grow.</p>

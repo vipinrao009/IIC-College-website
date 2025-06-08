@@ -36,7 +36,7 @@ const CodingClub = () => {
       >
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Welcome to Institute Of Engineering And Technology, Khandari Coding Club!
+            Welcome to Coding Club!
           </h1>
           <p className="text-lg md:text-xl">
             A coding club is a community or organization where individuals with an interest in programming and computer

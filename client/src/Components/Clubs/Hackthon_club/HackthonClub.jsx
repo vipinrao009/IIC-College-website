@@ -35,7 +35,7 @@ const HackthonClub = () => {
           >
             <div className="container mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Welcome to Institute Of Engineering And Technology, Khandari Hackthon Club!
+                Welcome to Hackthon Club!
               </h1>
               <p className="text-lg md:text-xl">
               The Hackathon Club is a community of innovative thinkers, problem solvers, and tech enthusiasts who thrive in fast-paced, challenge-driven environments. It brings together students from diverse domains to brainstorm, build, and showcase real-world solutions through hackathons.</p>

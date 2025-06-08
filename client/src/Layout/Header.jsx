@@ -45,18 +45,18 @@ const Navbar = () => {
 
   const clubLinks = [
     { name: "Coding Club", to: "/club/coding" },
+    { name: "Training & Placement Club", to: "/club/placement" },
+    { name: "Hackthon Club", to: "/club/hackthon" },
+    { name: "Digital Media Club", to: "/club/poster" },
     { name: "Robotic Club", to: "/club/robotic" },
     { name: "Gate Club", to: "/club/gate" },
     { name: "E-Gaming Club", to: "/club/gaming" },
-    { name: "AutoCAD Club", to: "/club/autocad" },
+    // { name: "AutoCAD Club", to: "/club/autocad" },
     { name: "AI & IOT Club", to: "/club/iot" },
-    { name: "Hackthon Club", to: "/club/hackthon" },
-    { name: "Automobile Club", to: "/club/automobile" },
-    { name: "Maintenance Club", to: "/club/maintenance" },
+    // { name: "Automobile Club", to: "/club/automobile" },
+    // { name: "Maintenance Club", to: "/club/maintenance" },
     { name: "Sport Club", to: "/club/sport" },
-    { name: "Training & Placement Club", to: "/club/placement" },
     { name: "Cultural Club", to: "/club/cultural" },
-    { name: "Poster Club", to: "/club/poster" },
   ];
 
   const dashboardMenu = (
@@ -94,7 +94,7 @@ const Navbar = () => {
             />
             <div>
               <h1 className="text-lg md:text-2xl font-bold text-blue-900">
-                Institute of Engineering & Technology, Khandari, Agra
+                Institute of Engineering & Technology Swami Vivekanand Campus, Agra
               </h1>
               <p className="text-gray-600 text-sm font-semibold">
                 An Institution with 90+ Years of Glorious History & Contributions in Teaching and Research
@@ -105,7 +105,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className="hidden md:block text-right">
-            <p className="text-sm text-gray-600 font-medium">Affiliated to Dr. B. R. Ambedkar University</p>
+            <p className="text-sm text-gray-600 font-medium">Dr. B. R. Ambedkar University</p>
             <p className="text-sm text-blue-800 font-medium">Est. 1927</p>
           </div>
         </div>

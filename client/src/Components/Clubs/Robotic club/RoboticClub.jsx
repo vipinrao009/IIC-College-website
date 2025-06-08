@@ -35,7 +35,7 @@ const RoboticClub = () => {
           >
             <div className="container mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Welcome to Institute Of Engineering And Technology, Khandari Robotic Club!
+                Welcome to Robotic Club!
               </h1>
               <p className="text-lg md:text-xl">
               A Robotics Club is a community where enthusiasts passionate about robotics, electronics, and automation come together to explore, build, and innovate. It’s a place for hands-on learning, creative collaboration, and engaging in real-world robotic challenges and projects.

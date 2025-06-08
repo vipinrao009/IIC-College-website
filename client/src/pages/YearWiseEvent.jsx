@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 const YearWiseEvent = () => {
   const [galleries, setGalleries] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [activeYear, setActiveYear] = useState('2025'); // default tab
+  const [activeYear, setActiveYear] = useState('2024'); // default tab
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
   const [activeEventFiles, setActiveEventFiles] = useState([]);
@@ -38,7 +38,7 @@ const YearWiseEvent = () => {
     setActiveYear(key);
   };
 
-  const years = ['2025','2024', '2023', '2022'];
+  const years = ['2024', '2023', '2022'];
 
   // Flatten files from all events and attach meta info
   const paginatedGalleries = galleries.flatMap((event) =>
