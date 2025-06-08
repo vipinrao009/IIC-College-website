@@ -91,20 +91,22 @@ const YearWiseEvent = () => {
                   return (
                     <div
                       key={event._id}
-                      className="rounded-lg overflow-hidden border border-gray-300 bg-white shadow-sm"
+                      className="rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-md transition-transform duration-200 hover:scale-[1.02]"
                     >
                       <img
                         src={event.files[0].url}
                         alt={event.title}
                         onClick={() => {
                           setActiveEventFiles(event.files);
-                          setPreviewDetails(event)
+                          setPreviewDetails(event);
                           setActiveFileIndex(0);
                         }}
-                        className="w-96 md:w-72 h-48 object-cover cursor-pointer"
+                        className="w-full h-48 object-cover cursor-pointer"
                       />
-                      <div className="p-2 bg-sky-200">
-                        <h3 className="text-lg text-center font-semibold">{event.title}</h3>
+                      <div className="bg-sky-100 p-3">
+                        <h3 className="text-center text-lg font-semibold text-gray-800 truncate">
+                          {event.title}
+                        </h3>
                       </div>
                     </div>
                   );
