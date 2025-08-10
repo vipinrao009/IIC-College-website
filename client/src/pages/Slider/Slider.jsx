@@ -6,6 +6,7 @@ import s1 from '../../pages/Slider/1.png';
 import s2 from '../../pages/Slider/2.png';
 import s3 from '../../pages/Slider/3.png';
 import { useNavigate } from 'react-router-dom';
+import ServerWakeMessage from '../ServerWakeMessage';
 
 const AutoImageSlider = () => {
   const images = [s1, s2, s3];
@@ -26,6 +27,9 @@ const AutoImageSlider = () => {
 
   return (
     <div className="w-full relative">
+      <div>
+          <ServerWakeMessage apiUrl={'https://ietclubnestbackend.onrender.com/api/v1/notice/fetch'}/>
+      </div>
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index} className="relative">

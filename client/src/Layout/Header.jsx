@@ -110,9 +110,6 @@ const Navbar = () => {
             <p className="text-sm text-blue-800 font-medium">Est. 1927</p>
           </div>
         </div>
-        <div>
-          <ServerWakeMessage apiUrl={'https://ietclubnestbackend.onrender.com/api/v1/notice/fetch'}/>
-        </div>
       </div>
 
       {/* Navigation */}
