@@ -7,6 +7,7 @@ import { Button, Dropdown, Menu } from "antd";
 import { DownOutlined } from '@ant-design/icons';
 import { toast } from 'react-toastify';
 import axiosInstance from '../Context/baseUrl';
+import ServerWakeMessage from '../pages/ServerWakeMessage';
 
 const Navbar = () => {
   const { state, dispatch } = useGlobalContext();
@@ -108,6 +109,9 @@ const Navbar = () => {
             <p className="text-sm text-gray-600 font-medium">Dr. B. R. Ambedkar University</p>
             <p className="text-sm text-blue-800 font-medium">Est. 1927</p>
           </div>
+        </div>
+        <div>
+          <ServerWakeMessage apiUrl={'https://ietclubnestbackend.onrender.com/api/v1/notice/fetch'}/>
         </div>
       </div>
 
